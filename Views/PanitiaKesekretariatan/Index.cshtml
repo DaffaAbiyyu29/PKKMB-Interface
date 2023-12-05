@@ -1,0 +1,82 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="card">
+	<div class="card-body">
+		<div class="my-3" style="margin-top: 40px;">
+			<a class="btn btn-primary" asp-controller="panitiakesekretariatan" asp-action="DaftarAkunKsk">Tambah Data</a>
+		</div>
+		<table class="table" id="">
+			<thead>
+				<tr>
+					<th scope="col">No</th>
+					<th scope="col">NIM</th>
+					<th scope="col">Nama KSK</th>
+					<th scope="col">Gender</th>
+					<th scope="col">Program Studi</th>
+					<th scope="col">Role</th>
+					<th scope="col">Aksi</th>
+				</tr>
+			</thead>
+			<tbody id="tbody"></tbody>
+		</table>
+	</div>
+</div>
+
+<script>
+	new DataTable('#datatable');
+	loadTable()
+
+	function loadTable() {
+		var hostname = "https://localhost:7087/"
+		var url = hostname + "getallksk"
+		var method = "GET"
+		var counter = 1; // Initialize a counter variable
+
+		$.ajax({
+			url: url,
+			method: method,
+			contentType: "application/json",
+			success: function (data) {
+				var list = data.data
+				list.forEach(function (item) {
+					var newRow = '<tr>' +
+						'<td>' + counter + '</td>' + // Use the counter as a sequence number
+						'<td>' + item.ksk_nim + '</td>' +
+						'<td>' + item.ksk_namalengkap + '</td>' +
+						'<td>' + item.ksk_gender + '</td>' +
+						'<td>' + item.ksk_programstudi + '</td>' +
+						'<td>' + item.ksk_role + '</td>' +
+						'<td>' +
+						'<a class="btn btn-secondary" href="/panitiakesekretariatan/update/' + item.ksk_nim + '">Update</a>' +
+						'<button class="btn btn-danger" value="' + item.ksk_nim + '" onclick="hapus(this.value)">Delete</button>' +
+						'</td>' +
+						'</tr>';
+
+					$('#tbody').append(newRow);
+					counter++; // Increment the counter for the next row
+				});
+				console.log(list)
+			},
+		});
+	}
+
+	function hapus(ksk_nim) {
+		var hostname = "https://localhost:7087/"
+		var url = hostname + "hapusksk?ksk_nim=" + ksk_nim
+		var method = "DELETE"
+
+		$.ajax({
+			url: url,
+			method: method,
+			contentType: "application/json",
+			success: function (data) {
+				alert("Data Berhasil Dihapus")
+				location.reload();
+			},
+		});
+	}
+</script>

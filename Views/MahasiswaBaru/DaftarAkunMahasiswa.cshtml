@@ -1,0 +1,133 @@
+﻿@{
+	Layout = "_Layout";
+}
+
+<div class="row justify-content-center mb-5">
+	<div class="col-lg-5 text-center">
+		<div class="card">
+			<h5 class="card-header white-text py-4" style="background-color: #0059AB;">
+				<strong>Daftar Akun Mahasiswa</strong>
+			</h5>
+			<div class="card-body px-lg-5 pt-0 my-1">
+				<div class="md-form">
+					<input type="text" class="form-control" MaxLength="30" placeholder="Nomor Pendaftaran" name="mhs_nopendaftaran" id="mhs_nopendaftaran">
+				</div>
+				<div class="md-form">
+					<input type="text" class="form-control" MaxLength="30" placeholder="Nama Lengkap" name="mhs_namalengkap" id="mhs_namalengkap">
+				</div>
+				<div class="input-group">
+					<label class="form-check-label"> Gender </label>
+					<div class="form-check form-check-inline mb-4">
+						<input class="form-check-input" type="radio" name="mhs_gender" id="mhs_gender1" value="Laki-Laki" />
+						<label class="form-check-label" for="mhs_gender1">Laki-Laki</label>
+					</div>
+					<div class="form-check form-check-inline mb-4">
+						<input class="form-check-input" type="radio" name="mhs_gender" id="mhs_gender2" value="Perempuan" />
+						<label class="form-check-label" for="mhs_gender2">Perempuan</label>
+					</div>
+				</div>
+				<div class="md-form-select mb-4">
+					<select class="form-control" name="mhs_programstudi" id="mhs_programstudi">
+						<option selected disabled>Pilih Program Studi</option>
+						<option value="Teknik Produksi dan Proses Manufaktur">Teknik Produksi dan Proses Manufaktur</option>
+						<option value="Pembuatan Peralatan dan Perkakas Produksi">Pembuatan Peralatan dan Perkakas Produksi</option>
+						<option value="Manajemen Informatika">Manajemen Informatika</option>
+						<option value="Teknologi Konstruksi Bangunan Gedung">Teknologi Konstruksi Bangunan Gedung</option>
+						<option value="Mekatronika">Mekatronika</option>
+						<option value="Mesin Otomotif">Mesin Otomotif</option>
+						<option value="Teknologi Rekayasa Pemeliharaan Alat Berat">Teknologi Rekayasa Pemeliharaan Alat Berat</option>
+						<option value="Teknologi Rekayasa Logistik">Teknologi Rekayasa Logistik</option>
+					</select>
+				</div>
+				<div class="md-form-input">
+					<textarea class="form-control" placeholder="Alamat" name="mhs_alamat" id="mhs_alamat" fdprocessedid="31smj"></textarea>
+				</div>
+				<div class="md-form">
+					<input type="email" class="form-control" MaxLength="30" placeholder="Email" name="mhs_email" id="mhs_email">
+				</div>
+				<div class="md-form">
+					<input type="number" class="form-control" placeholder="Nomor Telepon" name="mhs_notelepon" id="mhs_notelepon">
+				</div>
+				<div class="md-form-select mb-4">
+					<select class="form-control" name="mhs_kategori" id="mhs_kategori">
+						<option selected disabled>Kategori Mahasiswa</option>
+						<option value="Regular">Regular</option>
+						<option value="Beasiswa">Beasiswa</option>
+					</select>
+				</div>
+				<div class="md-form">
+					<input type="password" class="form-control" placeholder="Kata Sandi" name="mhs_password" id="mhs_password">
+				</div>
+				<div class="md-form">
+					<input type="password" class="form-control" placeholder="Ketik Ulang Kata Sandi" name="mhs_password_key" id="mhs_password_key">
+				</div>
+				<button class="btn btn-rounded btn-block my-4 white-text font-weight-bold waves-effect z-depth-0" Style="background-color: #0059AB;" onclick="daftarMahasiswa(event)">Daftar</button>
+				<p>
+					Sudah Memiliki Akun? <a asp-controller="mahasiswa" asp-action="LoginMahasiswa" class="font-weight-bold">Klik Disini</a>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+	function daftarMahasiswa(event) {
+		event.preventDefault();
+
+		var mhs_nopendaftaran = document.getElementById("mhs_nopendaftaran").value;
+		var mhs_namalengkap = document.getElementById("mhs_namalengkap").value;
+		var gender = document.getElementsByName("mhs_gender");
+		var mhs_gender;
+		for (var i = 0; i < gender.length; i++) {
+			if (gender[i].checked) {
+				mhs_gender = gender[i].value;
+				break;
+			}
+		}
+
+		var mhs_programstudi = document.getElementById("mhs_programstudi").value;
+		var mhs_alamat = document.getElementById("mhs_alamat").value;
+		var mhs_notelepon = document.getElementById("mhs_notelepon").value;
+		var mhs_email = document.getElementById("mhs_email").value;
+		var mhs_password = document.getElementById("mhs_password").value;
+		var mhs_password_key = document.getElementById("mhs_password_key").value;
+		var mhs_kategori = document.getElementById("mhs_kategori").value;
+
+		if (mhs_password == mhs_password_key) {
+			var hostname = "https://localhost:7087/";
+			var url = hostname + "daftarmahasiswa";
+			var method = "POST";
+			var input = {
+				mhs_nopendaftaran: mhs_nopendaftaran,
+				mhs_namalengkap: mhs_namalengkap,
+				mhs_gender: mhs_gender,
+				mhs_programstudi: mhs_programstudi,
+				mhs_alamat: mhs_alamat,
+				mhs_notelepon: mhs_notelepon,
+				mhs_email: mhs_email,
+				mhs_password: mhs_password,
+				mhs_kategori: mhs_kategori,
+				mhs_idkelompok: "",
+			};
+			var data = JSON.stringify(input);
+
+			$.ajax({
+				url: url,
+				method: method,
+				data: data,
+				contentType: "application/json",
+				success: function (data) {
+					alert("Akun Berhasil Terbuat");
+					window.location.href = '.'; // Redirect to the desired URL
+				},
+				error: function (xhr, status, error) {
+					console.error("AJAX request error:", status, error);
+					console.log("Server response:", xhr.responseText);
+				},
+			});
+		} else {
+			alert("Kata Sandi Tidak Cocok!");
+		}
+	}
+</script>

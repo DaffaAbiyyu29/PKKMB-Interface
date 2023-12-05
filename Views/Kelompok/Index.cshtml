@@ -1,0 +1,74 @@
+﻿@{
+	ViewData["Title"] = "Anggota Page";
+}
+
+<div class="card">
+	<div class="card-body">
+		<div class="my-3" style="margin-top: 40px;">
+			<a class="btn btn-primary" asp-controller="Anggota" asp-action="Create">Tambah Data</a>
+		</div>
+		<table class="table datatable">
+			<thead>
+				<tr>
+					<th scope="col">No</th>
+					<th scope="col">ID Kelompok</th>
+					<th scope="col">Nama Kelompok</th>
+					<th scope="col">Aksi</th>
+				</tr>
+			</thead>
+			<tbody id="tbody"></tbody>
+		</table>
+	</div>
+</div>
+
+<script>
+	loadTable();
+
+	function loadTable() {
+		var hostname = "https://localhost:7064/";
+		var url = hostname + "GetAllKelompokAPI";
+		var method = "GET";
+		$.ajax({
+			url: url,
+			method: method,
+			contentType: "application/json",
+			success: function (data) {
+				var list = data.data;
+				var no = 1; // Move the declaration outside the loop
+				list.forEach(function (item) {
+					var newRow = '<tr>' +
+						'<td>' + no + '</td>' +
+						'<td>' + item.id_kelompok + '</td>' +
+						'<td>' + item.nama_kelompok + '</td>' +
+						'<td>' +
+						'<a class="btn btn-info" href="/kelompok/detail?id=' + item.id_kelompok + '">Detail</a>' +
+						'<a class="btn btn-secondary" href="/Anggota/Update?id=' + item.nama_kelompok + '">Update</a>' +
+						'<button class="btn btn-danger" value="' + item.id_kelompok + '" onclick="hapus(this.value)">Delete</button>' +
+						'</td>' +
+						'</tr>';
+
+					$('#tbody').append(newRow);
+					no++; // Increment x for the next row
+				});
+			},
+		});
+	}
+</script>
+
+<script>
+	function hapus(id) {
+		var hostname = "https://localhost:7064/";
+		var url = hostname + "DeleteAnggota?id=" + id;
+		var method = "DELETE";
+
+		$.ajax({
+			url: url,
+			method: method,
+			contentType: "application/json",
+			success: function (data) {
+				alert("Data Berhasil Dihapus");
+				location.reload();
+			},
+		});
+	}
+</script>
