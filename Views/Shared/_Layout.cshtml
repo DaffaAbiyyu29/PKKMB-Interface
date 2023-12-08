@@ -34,7 +34,6 @@
 	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 	<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
-	<script src="~/assets/Scripts/jquery-3.6.0.min.js"></script>
 	<script src="~/assets/Scripts/jquery-ui-1.13.2.min.js"></script>
 	<script src="~/assets/Plugins/sweetalert2/dist/sweetalert2.min.js"></script>
 	<script src="~/assets/Plugins/fontawesome-free-5.11.2-web/js/fontawesome.min.js"></script>
@@ -90,37 +89,92 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent-555">
 				<ul class="navbar-nav ml-auto">
+					@*MAHASISWA BARU*@
 					<li class="nav-item mr-3">
-						<a class="nav-link" style="font-weight: bold;" href="Page_Pendaftaran_Informasi_dan_Pengumuman.aspx">Pengumuman PMB</a>
-					</li>
-					<li class="nav-item mr-3">
-						<a class="nav-link" style="font-weight: bold;" href="https://www.polytechnic.astra.ac.id/program-studi/" target="_blank">Program Studi</a>
-					</li>
-					<li class="nav-item mr-3">
-						<a class="nav-link" style="font-weight: bold;" asp-controller="kelompok" asp-action="index">Kelompok</a>
-					</li>
+						<a class="nav-link" style="font-weight: bold;" href="Page_Pendaftaran_Informasi_dan_Pengumuman.aspx">Dashboard</a>
 					<li class="nav-item dropdown mr-3">
 						<a class="nav-link dropdown-toggle" style="font-weight: bold;" id="navbarDropdownMenuLink-Informasi" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Informasi</a>
 						<div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink-Informasi">
-							<a class="hovercolor" style="font-weight: bold;" href="Page_Pendaftaran_Panduan_Pendaftaran.aspx">Panduan Pendaftaran</a>
-							<a class="hovercolor" style="font-weight: bold;" href="Page_Pendaftaran_Persyaratan_Pendaftaran.aspx">Persyaratan Pendaftaran</a>
-							<a class="hovercolor" style="font-weight: bold;" href="Page_Biaya.aspx">Kelompok</a>
-							<a class="hovercolor" style="font-weight: bold;" href="Page_Fasilitas_Kampus.aspx">Fasilitas Kampus</a>
+							<a class="hovercolor" style="font-weight: bold;" href="Page_Pendaftaran_Panduan_Pendaftaran.aspx">Jadwal</a>
+							<a class="hovercolor" style="font-weight: bold;" href="Page_Pendaftaran_Persyaratan_Pendaftaran.aspx">Tugas</a>
+							<a class="hovercolor" style="font-weight: bold;" href="Page_Biaya.aspx">Absensi</a>
+							<a class="hovercolor" style="font-weight: bold;" href="Page_Fasilitas_Kampus.aspx">Jam Plus</a>
+							<a class="hovercolor" style="font-weight: bold;" href="Page_Fasilitas_Kampus.aspx">Jam Minus</a>
+							<a class="hovercolor" style="font-weight: bold;" href="Page_Fasilitas_Kampus.aspx">Sikap</a>
+							<a class="hovercolor" style="font-weight: bold;" href="Page_Fasilitas_Kampus.aspx">Kelompok</a>
+							<a class="hovercolor" style="font-weight: bold;" href="Page_Fasilitas_Kampus.aspx">Ruangan</a>
 						</div>
 					</li>
 					<li class="nav-item mr-3">
-						<a class="nav-link" style="font-weight: bold;" href="Page_FAQ.aspx">
-							FAQ
-							@ViewBag.role
-						</a>
+						<a class="nav-link" style="font-weight: bold;" asp-controller="kelompok" asp-action="index">Evaluasi</a>
 					</li>
+					<li class="nav-item mr-3">
+						<a class="nav-link" style="font-weight: bold;" asp-controller="kelompok" asp-action="index">Kelulusan</a>
+					</li>
+						@*---------------------------------------------------------------------------------------------------------------------------------------*@
+						@*Panitia Kesekretariatan*@
+					<li class="nav-item mr-3">
+						<a class="nav-link" style="font-weight: bold;" href="Page_Pendaftaran_Informasi_dan_Pengumuman.aspx">Dashboard</a>
+					<li class="nav-item dropdown mr-3">
+						<a class="nav-link dropdown-toggle" style="font-weight: bold;" id="navbarDropdownMenuLink-Informasi" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Informasi</a>
+						<div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink-Informasi">
+							<a class="hovercolor" style="font-weight: bold;" href="Page_Pendaftaran_Panduan_Pendaftaran.aspx">Jadwal</a>
+							<a class="hovercolor" style="font-weight: bold;" href="Page_Fasilitas_Kampus.aspx">Kelompok</a>
+							<a class="hovercolor" style="font-weight: bold;" href="Page_Fasilitas_Kampus.aspx">Ruangan</a>
+						</div>
+					</li>
+					<li class="nav-item mr-3">
+						<a class="nav-link" style="font-weight: bold;" asp-controller="kelompok" asp-action="index">Tugas</a>
+					</li>
+					<li class="nav-item mr-3">
+						<a class="nav-link" style="font-weight: bold;" asp-controller="kelompok" asp-action="index">Nilai</a>
+					</li>
+					<li class="nav-item mr-3">
+						<a class="nav-link" style="font-weight: bold;" asp-controller="kelompok" asp-action="index">Evaluasi</a>
+					</li>
+					<li class="nav-item mr-3">
+						<a class="nav-link" style="font-weight: bold;" asp-controller="kelompok" asp-action="index">Kelulusan</a>
+					</li>
+							@*---------------------------------------------------------------------------------------------------------------------------------------*@
+							@*PIC PKKMB*@
+					<li class="nav-item mr-3">
+						<a class="nav-link" style="font-weight: bold;" href="Page_Pendaftaran_Informasi_dan_Pengumuman.aspx">Dashboard</a>
+					<li class="nav-item dropdown mr-3">
+						<a class="nav-link dropdown-toggle" style="font-weight: bold;" id="navbarDropdownMenuLink-Informasi" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Informasi</a>
+						<div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink-Informasi">
+							<a class="hovercolor" style="font-weight: bold;" href="Page_Pendaftaran_Panduan_Pendaftaran.aspx">Jadwal</a>
+							<a class="hovercolor" style="font-weight: bold;" href="Page_Fasilitas_Kampus.aspx">Kelompok</a>
+							<a class="hovercolor" style="font-weight: bold;" href="Page_Fasilitas_Kampus.aspx">Ruangan</a>
+						</div>
+					</li>
+					<li class="nav-item mr-3">
+						<a class="nav-link" style="font-weight: bold;" asp-controller="panitiakesekretariatan" asp-action="index">Panitia KSK</a>
+					</li>
+					<li class="nav-item dropdown mr-3">
+						<a class="nav-link dropdown-toggle" style="font-weight: bold;" id="navbarDropdownMenuLink-Informasi" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mahasiswa Baru</a>
+						<div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink-Informasi">
+							<a class="hovercolor" style="font-weight: bold;" href="Page_Pendaftaran_Persyaratan_Pendaftaran.aspx">Tugas</a>
+							<a class="hovercolor" style="font-weight: bold;" href="Page_Biaya.aspx">Absensi</a>
+							<a class="hovercolor" style="font-weight: bold;" href="Page_Fasilitas_Kampus.aspx">Jam Plus</a>
+							<a class="hovercolor" style="font-weight: bold;" href="Page_Fasilitas_Kampus.aspx">Jam Minus</a>
+							<a class="hovercolor" style="font-weight: bold;" href="Page_Fasilitas_Kampus.aspx">Sikap</a>
+							<a class="hovercolor" style="font-weight: bold;" href="Page_Fasilitas_Kampus.aspx">Kelulusan</a>
+						</div>
+					</li>
+					<li class="nav-item mr-3">
+						<a class="nav-link" style="font-weight: bold;" asp-controller="kelompok" asp-action="index">Evaluasi</a>
+					</li>
+					<li class="nav-item mr-3">
+						<a class="nav-link" style="font-weight: bold;" asp-controller="picpkkmb" asp-action="index">PIC PKKMB</a>
+					</li>
+								@*---------------------------------------------------------------------------------------------------------------------------------------*@
 					<li class="nav-item mr-2">
 						<a class="nav-link font-weight-bold waves-effect waves-light white-text" asp-controller="mahasiswabaru" asp-action="LoginMahasiswa" style="padding: 8px 15px; background-color: #0059AB;"><b style="font-weight: bold;">Login</b></a>
 					</li>
 				</ul>
 			</div>
 		</nav>
-		<div class="container-fluid" style="padding-top: 60px;">
+		<div class="container-fluid" style="padding-top: 50px;">
 			<!-- Adjust the value according to your needs -->
 			@RenderBody()
 		</div>

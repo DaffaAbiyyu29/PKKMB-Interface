@@ -51,6 +51,8 @@
 				contentType: "application/json",
 				success: function (data) {
 					if (data.status === 200) {
+						//sessionStorage.setItem('JWTToken', response.Data.Token);
+						//sessionStorage.setItem('UserRole', response.Data.UserRole);
 						alert("Berhasil Login");
 						window.location.href = '/mahasiswabaru/index';
 					} else {

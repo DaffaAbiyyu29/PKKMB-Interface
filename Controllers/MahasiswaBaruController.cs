@@ -4,8 +4,16 @@ namespace PKKMB_Interface.Controllers
 {
 	public class MahasiswaBaruController : Controller
 	{
+		private readonly IConfiguration _configuration;
+
+		public MahasiswaBaruController(IConfiguration configuration)
+		{
+			_configuration = configuration;
+		}
+
 		public IActionResult Index()
 		{
+			ViewBag.url = _configuration.GetSection("AppSettings:url").Value;
 			return View();
 		}
 
@@ -21,6 +29,7 @@ namespace PKKMB_Interface.Controllers
 		{
 			Response.Cookies.Delete(".AspNetCore.Session");
 			ViewBag.role = "Mahasiswa";
+			ViewBag.url = _configuration.GetSection("AppSettings:url").Value;
 			return View("LoginMahasiswa");
 		}
 

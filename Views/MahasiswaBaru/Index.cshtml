@@ -1,7 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
 }
 
 <div class="card">
@@ -34,7 +31,7 @@
 	loadTable()
 
 	function loadTable() {
-		var hostname = "https://localhost:7087/"
+		var hostname = '@ViewBag.url'
 		var url = hostname + "getallmahasiswa"
 		var method = "GET"
 		var counter = 1; // Initialize a counter variable
@@ -65,7 +62,6 @@
 					$('#tbody').append(newRow);
 					counter++; // Increment the counter for the next row
 				});
-				console.log(list)
 			},
 		});
 	}
