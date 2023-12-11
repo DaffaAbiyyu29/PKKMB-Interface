@@ -126,14 +126,21 @@
 					<li class="nav-item mr-3">
 						<a class="nav-link" style="font-weight: bold;" asp-controller="panitiakesekretariatan" asp-action="informasitugas">Tugas</a>
 					</li>
-					<li class="nav-item mr-3">
-						<a class="nav-link" style="font-weight: bold;" asp-controller="panitiakesekretariatan" asp-action="informasinilai">Nilai</a>
+					<li class="nav-item dropdown mr-3">
+						<a class="nav-link dropdown-toggle" style="font-weight: bold;" id="navbarDropdownMenuLink-Informasi" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Nilai</a>
+						<div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink-Informasi">
+							<a class="hovercolor" style="font-weight: bold;" asp-controller="panitiakesekretariatan" asp-action="nilaitugas">Tugas</a>
+							<a class="hovercolor" style="font-weight: bold;" asp-controller="panitiakesekretariatan" asp-action="nilaisikap">Sikap</a>
+							<a class="hovercolor" style="font-weight: bold;" asp-controller="panitiakesekretariatan" asp-action="nilaijamplus">Jam Plus</a>
+							<a class="hovercolor" style="font-weight: bold;" asp-controller="panitiakesekretariatan" asp-action="nilaijamminus">Jam Minus</a>
+							<a class="hovercolor" style="font-weight: bold;" asp-controller="panitiakesekretariatan" asp-action="nilaiabsensi">Absensi</a>
+						</div>
 					</li>
 					<li class="nav-item mr-3">
-						<a class="nav-link" style="font-weight: bold;" asp-controller="panitiakesekretariatan" asp-action="informasievaluasi">Evaluasi</a>
+						<a class="nav-link" style="font-weight: bold;" asp-controller="panitiakesekretariatan" asp-action="evaluasi">Evaluasi</a>
 					</li>
 					<li class="nav-item mr-3">
-						<a class="nav-link" style="font-weight: bold;" asp-controller="panitiakesekretariatan" asp-action="informasikelulusan">Kelulusan</a>
+						<a class="nav-link" style="font-weight: bold;" asp-controller="panitiakesekretariatan" asp-action="kelulusan">Kelulusan</a>
 					</li>
 							@*---------------------------------------------------------------------------------------------------------------------------------------*@
 							@*PIC PKKMB*@
