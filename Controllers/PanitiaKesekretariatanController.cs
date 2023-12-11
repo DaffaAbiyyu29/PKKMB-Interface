@@ -35,5 +35,17 @@ namespace PKKMB_Interface.Controllers
 		{
 			return View();
 		}
-	}
+
+		[Route("panitiakesekretariatan/informasimahasiswa")]
+        public IActionResult InformasiMahasiswa()
+        {
+            return View();
+        }
+
+        [Route("panitiakesekretariatan/informasijadwal")]
+        public IActionResult InformasiJadwal()
+        {
+            return View();
+        }
+    }
 }
