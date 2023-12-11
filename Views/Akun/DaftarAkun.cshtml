@@ -93,6 +93,15 @@
 							</select>
 							<label for="floatingSelect">Kategori Mahasiswa</label>
 						</div>
+						
+						<div class="form-floating mb-4 role">
+							<select class="form-select" id="floatingSelect" name="role" aria-label="">
+								<option selected>Pilih Role Panitia Kesekretariatan</option>
+								<option value="KSK">KSK</option>
+								<option value="Fasilitator">Fasilitator</option>
+							</select>
+							<label for="floatingSelect">Role Panitia Kesekretariatan</label>
+						</div>
 
 						<div class="form-floating mb-4 katasandi">
 							<input type="password" class="form-control" maxlength="30" id="floatingInputGrid" name="katasandi" placeholder="">
@@ -127,6 +136,7 @@
 	$('.notelepon').hide();
 	$('.email').hide();
 	$('.kategori').hide();
+	$('.role').hide();
 	$('.katasandi').hide();
 	$('.katasandi2').hide();
 
@@ -147,6 +157,7 @@
 				$('.notelepon').show();
 				$('.email').show();
 				$('.kategori').show();
+				$('.role').hide();
 				$('.katasandi').show();
 				$('.katasandi2').show();
 			} else if (selectedTipeAkun === 'Panitia Kesekretariatan') {
@@ -158,7 +169,8 @@
 				$('.alamat').show();
 				$('.notelepon').show();
 				$('.email').show();
-				$('.kategori').show();
+				$('.kategori').hide();
+				$('.role').show();
 				$('.katasandi').show();
 				$('.katasandi2').show();
 			}
