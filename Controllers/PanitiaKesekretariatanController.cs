@@ -90,6 +90,18 @@ namespace PKKMB_Interface.Controllers
 			return View();
 		}
 
+		[Route("panitiakesekretariatan/tambahnilaisikap")]
+		public IActionResult TambahNilaiSikap()
+		{
+			return View();
+		}
+
+		[Route("panitiakesekretariatan/ubahnilaisikap")]
+		public IActionResult UbahNilaiSikap()
+		{
+			return View();
+		}
+
 		[Route("panitiakesekretariatan/nilaijamplus")]
 		public IActionResult NilaiJamPlus()
 		{
