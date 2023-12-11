@@ -47,5 +47,41 @@ namespace PKKMB_Interface.Controllers
         {
             return View();
         }
+
+        [Route("panitiakesekretariatan/informasikelompok")]
+        public IActionResult InformasiKelompok()
+        {
+            return View();
+        }
+
+        [Route("panitiakesekretariatan/informasiruangan")]
+        public IActionResult InformasiRuangan()
+        {
+            return View();
+        }
+
+        [Route("panitiakesekretariatan/informasitugas")]
+        public IActionResult InformasiTugas()
+        {
+            return View();
+        }
+
+        [Route("panitiakesekretariatan/informasinilai")]
+        public IActionResult InformasiNilai()
+        {
+            return View();
+        }
+
+        [Route("panitiakesekretariatan/informasievaluasi")]
+        public IActionResult InformasiEvaluasi()
+        {
+            return View();
+        }
+
+        [Route("panitiakesekretariatan/informasikelulusan")]
+        public IActionResult InformasiKelulusan()
+        {
+            return View();
+        }
     }
 }

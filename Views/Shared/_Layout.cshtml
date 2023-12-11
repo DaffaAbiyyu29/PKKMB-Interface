@@ -114,26 +114,26 @@
 						@*---------------------------------------------------------------------------------------------------------------------------------------*@
 						@*Panitia Kesekretariatan*@
 					<li class="nav-item mr-3">
-						<a class="nav-link" style="font-weight: bold;" href="Page_Pendaftaran_Informasi_dan_Pengumuman.aspx">Dashboard</a>
+						<a class="nav-link" style="font-weight: bold;" asp-controller="panitiakesekretariatan" asp-action="index">Dashboard</a>
 					<li class="nav-item dropdown mr-3">
 						<a class="nav-link dropdown-toggle" style="font-weight: bold;" id="navbarDropdownMenuLink-Informasi" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Informasi</a>
 						<div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink-Informasi">
-							<a class="hovercolor" style="font-weight: bold;" href="Page_Pendaftaran_Panduan_Pendaftaran.aspx">Jadwal</a>
-							<a class="hovercolor" style="font-weight: bold;" href="Page_Fasilitas_Kampus.aspx">Kelompok</a>
-							<a class="hovercolor" style="font-weight: bold;" href="Page_Fasilitas_Kampus.aspx">Ruangan</a>
+							<a class="hovercolor" style="font-weight: bold;" asp-controller="panitiakesekretariatan" asp-action="informasijadwal">Jadwal</a>
+							<a class="hovercolor" style="font-weight: bold;" asp-controller="panitiakesekretariatan" asp-action="informasikelompok">Kelompok</a>
+							<a class="hovercolor" style="font-weight: bold;" asp-controller="panitiakesekretariatan" asp-action="informasiruangan">Ruangan</a>
 						</div>
 					</li>
 					<li class="nav-item mr-3">
-						<a class="nav-link" style="font-weight: bold;" asp-controller="kelompok" asp-action="index">Tugas</a>
+						<a class="nav-link" style="font-weight: bold;" asp-controller="panitiakesekretariatan" asp-action="informasitugas">Tugas</a>
 					</li>
 					<li class="nav-item mr-3">
-						<a class="nav-link" style="font-weight: bold;" asp-controller="kelompok" asp-action="index">Nilai</a>
+						<a class="nav-link" style="font-weight: bold;" asp-controller="panitiakesekretariatan" asp-action="informasinilai">Nilai</a>
 					</li>
 					<li class="nav-item mr-3">
-						<a class="nav-link" style="font-weight: bold;" asp-controller="kelompok" asp-action="index">Evaluasi</a>
+						<a class="nav-link" style="font-weight: bold;" asp-controller="panitiakesekretariatan" asp-action="informasievaluasi">Evaluasi</a>
 					</li>
 					<li class="nav-item mr-3">
-						<a class="nav-link" style="font-weight: bold;" asp-controller="kelompok" asp-action="index">Kelulusan</a>
+						<a class="nav-link" style="font-weight: bold;" asp-controller="panitiakesekretariatan" asp-action="informasikelulusan">Kelulusan</a>
 					</li>
 							@*---------------------------------------------------------------------------------------------------------------------------------------*@
 							@*PIC PKKMB*@
