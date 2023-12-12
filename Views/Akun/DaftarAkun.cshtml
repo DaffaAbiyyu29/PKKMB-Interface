@@ -30,22 +30,22 @@
 					<div class="col-md-6">
 						<!-- First Column -->
 						<div class="form-floating mb-4 nim">
-							<input type="text" class="form-control" maxlength="10" id="floatingInputGrid" name="nim" placeholder="">
+							<input type="text" class="form-control" maxlength="10" id="nim" name="nim" placeholder="">
 							<label for="floatingInputGrid">NIM</label>
 						</div>
 
 						<div class="form-floating mb-4 nopendaftaran">
-							<input type="text" class="form-control" maxlength="10" id="floatingInputGrid" name="nopendafataran" placeholder="">
+							<input type="text" class="form-control" maxlength="10" id="nopendaftaran" name="nopendaftaran" placeholder="">
 							<label for="floatingInputGrid">No Pendaftaran</label>
 						</div>
 
 						<div class="form-floating mb-4 namalengkap">
-							<input type="text" class="form-control" maxlength="10" id="floatingInputGrid" name="namalengkap" placeholder="">
+							<input type="text" class="form-control" maxlength="10" id="namalengkap" name="namalengkap" placeholder="">
 							<label for="floatingInputGrid">Nama Lengkap</label>
 						</div>
 
 						<div class="form-floating mb-4 jeniskelamin">
-							<select class="form-select" id="floatingSelect" name="jeniskelamin" aria-label="">
+							<select class="form-select" id="jeniskelamin" name="jeniskelamin" aria-label="">
 								<option selected>Pilih Jenis Kelamin</option>
 								<option value="Laki-laki">Laki-laki</option>
 								<option value="Perempuan">Perempuan</option>
@@ -54,7 +54,7 @@
 						</div>
 
 						<div class="form-floating mb-4 programstudi">
-							<select class="form-select" id="floatingSelect" name="programstudi" aria-label="">
+							<select class="form-select" id="programstudi" name="programstudi" aria-label="">
 								<option selected disabled>Pilih Program Studi</option>
 								<option value="Teknik Produksi dan Proses Manufaktur">Teknik Produksi dan Proses Manufaktur</option>
 								<option value="Pembuatan Peralatan dan Perkakas Produksi">Pembuatan Peralatan dan Perkakas Produksi</option>
@@ -68,7 +68,7 @@
 							<label for="floatingSelect">Program Studi</label>
 						</div>
 						<div class="form-floating mb-4 alamat">
-							<textarea class="form-control" placeholder="" id="floatingTextarea2" name="alamat" style="height: 100px"></textarea>
+							<textarea class="form-control" placeholder="" id="alamat" name="alamat" style="height: 100px"></textarea>
 							<label for="floatingTextarea2">Alamat</label>
 						</div>
 					</div>
@@ -76,27 +76,27 @@
 					<div class="col-md-6">
 						<!-- Second Column -->
 						<div class="form-floating mb-4 notelepon">
-							<input type="number" class="form-control" maxlength="13" id="floatingInputGrid" name="notelepon" placeholder="">
+							<input type="number" class="form-control" maxlength="13" id="notelepon" name="notelepon" placeholder="">
 							<label for="floatingInputGrid">No Telepon</label>
 						</div>
 
 						<div class="form-floating mb-4 email">
-							<input type="email" class="form-control" maxlength="50" id="floatingInputGrid" name="email" placeholder="">
+							<input type="email" class="form-control" maxlength="50" id="email" name="email" placeholder="">
 							<label for="floatingInputGrid">Email</label>
 						</div>
 
 						<div class="form-floating mb-4 kategori">
-							<select class="form-select" id="floatingSelect" name="kategori" aria-label="">
+							<select class="form-select" id="kategori" name="kategori" aria-label="">
 								<option selected>Pilih Kategori Mahasiswa</option>
 								<option value="Beasiswa">Beasiswa</option>
 								<option value="Regular">Regular</option>
 							</select>
 							<label for="floatingSelect">Kategori Mahasiswa</label>
 						</div>
-						
+
 						<div class="form-floating mb-4 role">
-							<select class="form-select" id="floatingSelect" name="role" aria-label="">
-								<option selected>Pilih Role Panitia Kesekretariatan</option>
+							<select class="form-select" id="role" name="role" aria-label="">
+								<option selected>Pilih Role</option>
 								<option value="KSK">KSK</option>
 								<option value="Fasilitator">Fasilitator</option>
 							</select>
@@ -104,12 +104,12 @@
 						</div>
 
 						<div class="form-floating mb-4 katasandi">
-							<input type="password" class="form-control" maxlength="30" id="floatingInputGrid" name="katasandi" placeholder="">
+							<input type="password" class="form-control" maxlength="30" id="katasandi" name="katasandi" placeholder="">
 							<label for="floatingInputGrid">Kata Sandi</label>
 						</div>
 
 						<div class="form-floating mb-4 katasandi2">
-							<input type="password" class="form-control" maxlength="30" id="floatingInputGrid" name="katasandi2" placeholder="">
+							<input type="password" class="form-control" maxlength="30" id="katasandi2" name="katasandi2" placeholder="">
 							<label for="floatingInputGrid">Ketik Ulang Kata Sandi</label>
 						</div>
 					</div>
@@ -119,7 +119,7 @@
 						Sudah Memiliki Akun? <a asp-controller="akun" asp-action="login" class="font-weight-bold">Login Disini</a>
 					</div>
 				</div>
-				<button class="btn btn-rounded btn-block my-3 mb-4 white-text font-weight-bold waves-effect z-depth-0" Style="background-color: #0059AB;" onclick="login(event)">Daftar</button>
+				<button class="btn btn-rounded btn-block my-3 mb-4 white-text font-weight-bold waves-effect z-depth-0" Style="background-color: #0059AB;" onclick="daftarakun(event)">Daftar</button>
 			</div>
 		</div>
 	</div>
@@ -177,3 +177,90 @@
 		});
 	});
 </script>
+
+<script>
+	function daftarakun(event) {
+		event.preventDefault();
+
+		var selectedTipeAkun = $('[name="tipeakun"]').val();
+
+		var nim = document.getElementById("nim").value;
+		var nopendaftaran = document.getElementById("nopendaftaran").value;
+		var namalengkap = document.getElementById("namalengkap").value;
+		var jeniskelamin = document.getElementById("jeniskelamin").value;
+		var programstudi = document.getElementById("programstudi").value;
+		var alamat = document.getElementById("alamat").value;
+		var notelepon = document.getElementById("notelepon").value;
+		var email = document.getElementById("email").value;
+		var kategori = document.getElementById("kategori").value;
+		var role = document.getElementById("role").value;
+		var katasandi = document.getElementById("katasandi").value;
+		var katasandi2 = document.getElementById("katasandi2").value;
+
+		// ... (tindakan sesuai dengan tipe akun dan validasi lainnya)
+
+		if (katasandi == katasandi2) {
+			// Adjust the URL, method, and data based on the selected account type
+			var url = "";
+			var method = "";
+			var data = {};
+
+			if (selectedTipeAkun === 'Mahasiswa Baru') {
+				url = "https://localhost:7087/daftarmahasiswa";
+				method = "POST";
+				data = {
+					mhs_nopendaftaran: nopendaftaran,
+					mhs_namalengkap: namalengkap,
+					mhs_gender: jeniskelamin,
+					mhs_programstudi: programstudi,
+					mhs_alamat: alamat,
+					mhs_notelepon: notelepon,
+					mhs_email: email,
+					mhs_kategori: kategori,
+					mhs_password: katasandi,
+					mhs_status: "Menunggu Verifikasi",
+					mhs_idkelompok: "",
+					mhs_idpkkmb: "",
+					mhs_statuskelulusan: "",
+					mhs_saran: "",
+					mhs_kritik: "",
+					mhs_insight: "",
+					mhs_tglkirimevaluasi: "",
+				};
+			} else if (selectedTipeAkun === 'Panitia Kesekretariatan') {
+				url = "https://localhost:7087/daftarksk";
+				method = "POST";
+				data = {
+					ksk_nim: nim,
+					ksk_nama: namalengkap,
+					ksk_jeniskelamin: jeniskelamin,
+					ksk_programstudi: programstudi,
+					ksk_alamat: alamat,
+					ksk_notelepon: notelepon,
+					ksk_email: email,
+					ksk_role: role,
+					ksk_password: katasandi,
+					ksk_status: "Menunggu Verifikasi",
+				};
+			}
+
+			$.ajax({
+				url: url,
+				method: method,
+				data: JSON.stringify(data),
+				contentType: "application/json",
+				success: function (data) {
+					alert("Akun Berhasil Terbuat");
+					window.location.href = '..'; // Redirect to the desired URL
+				},
+				error: function (xhr, status, error) {
+					console.error("AJAX request error:", status, error);
+					console.log("Server response:", xhr.responseText);
+				},
+			});
+		} else {
+			alert("Kata Sandi Tidak Cocok!");
+		}
+	}
+</script>
+
