@@ -46,12 +46,12 @@
 					var newRow = '<tr>' +
 						'<td>' + counter + '</td>' + // Use the counter as a sequence number
 						'<td>' + item.ksk_nim + '</td>' +
-						'<td>' + item.ksk_namalengkap + '</td>' +
-						'<td>' + item.ksk_gender + '</td>' +
+						'<td>' + item.ksk_nama + '</td>' +
+						'<td>' + item.ksk_jeniskelamin + '</td>' +
 						'<td>' + item.ksk_programstudi + '</td>' +
 						'<td>' + item.ksk_role + '</td>' +
 						'<td>' +
-						'<a class="btn btn-secondary" href="/panitiakesekretariatan/update/' + item.ksk_nim + '">Update</a>' +
+						'<a class="btn btn-primary" href="/Akun/Ubah/' + item.ksk_nim + '"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>' +
 						//'<button class="btn btn-danger" value="' + item.ksk_nim + '" onclick="hapus(this.value)">Delete</button>' +
 						'</td>' +
 						'</tr>';
@@ -59,7 +59,6 @@
 					$('#tbody').append(newRow);
 					counter++; // Increment the counter for the next row
 				});
-				console.log(list)
 			},
 		});
 	}

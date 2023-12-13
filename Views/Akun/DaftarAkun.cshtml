@@ -40,7 +40,7 @@
 						</div>
 
 						<div class="form-floating mb-4 namalengkap">
-							<input type="text" class="form-control" maxlength="10" id="namalengkap" name="namalengkap" placeholder="">
+							<input type="text" class="form-control" maxlength="100" id="namalengkap" name="namalengkap" placeholder="">
 							<label for="floatingInputGrid">Nama Lengkap</label>
 						</div>
 
@@ -87,7 +87,7 @@
 
 						<div class="form-floating mb-4 kategori">
 							<select class="form-select" id="kategori" name="kategori" aria-label="">
-								<option selected>Pilih Kategori Mahasiswa</option>
+								<option selected disabled>Pilih Kategori Mahasiswa</option>
 								<option value="Beasiswa">Beasiswa</option>
 								<option value="Regular">Regular</option>
 							</select>
@@ -96,7 +96,7 @@
 
 						<div class="form-floating mb-4 role">
 							<select class="form-select" id="role" name="role" aria-label="">
-								<option selected>Pilih Role</option>
+								<option selected disabled>Pilih Role</option>
 								<option value="KSK">KSK</option>
 								<option value="Fasilitator">Fasilitator</option>
 							</select>
@@ -250,16 +250,29 @@
 				data: JSON.stringify(data),
 				contentType: "application/json",
 				success: function (data) {
-					alert("Akun Berhasil Terbuat");
-					window.location.href = '..'; // Redirect to the desired URL
+					Swal.fire({
+						position: "top-end",
+						icon: "success",
+						title: "Akun Berhasil Terbuat",
+						showConfirmButton: false,
+						timer: 2000
+					}).then(() => {
+						window.location.href = '..';
+					});
 				},
-				error: function (xhr, status, error) {
-					console.error("AJAX request error:", status, error);
-					console.log("Server response:", xhr.responseText);
+				error: function (xhr, status) {
+					console.error("AJAX request error:", status);
+					console.log("Server response:", xhr.responseJSON);
 				},
 			});
 		} else {
-			alert("Kata Sandi Tidak Cocok!");
+			Swal.fire({
+				position: "top-end",
+				icon: "error",
+				title: "Kata Sandi Tidak Cocok",
+				showConfirmButton: false,
+				timer: 2000
+			})
 		}
 	}
 </script>

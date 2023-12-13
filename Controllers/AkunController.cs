@@ -4,7 +4,7 @@ namespace PKKMB_Interface.Controllers
 {
 	public class AkunController : Controller
 	{
-		//[Route("/Akun/Login")]
+		[Route("/Akun/Login")]
 		public IActionResult Login()
 		{
 			return View();
@@ -17,6 +17,13 @@ namespace PKKMB_Interface.Controllers
 
 		public IActionResult LupaKataSandi()
 		{
+			return View();
+		}
+
+		[Route("/Akun/Ubah/{username}")]
+		public IActionResult UbahAkun(string username)
+		{
+			ViewBag.username = username;
 			return View();
 		}
 	}
