@@ -1,8 +1,79 @@
 ﻿@{
-	ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center mb-lg-5">
-	<h1 class="display-4">Welcome</h1>
-	<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+
+    <style>
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .img-fluid {
+            animation: load 1.5s forwards;
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+            display: block;
+        }
+
+        .box {
+            animation: load 1.5s forwards;
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+            display: block;
+        }
+        
+        .line {
+            animation: load 1.5s forwards;
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+            display: block;
+        }
+
+        .img-container {
+            position: relative;
+        }
+
+        .img-fluid:hover {
+            opacity: 0.5;
+            transform: scale(1.4) translateY(-20px);
+        }
+
+        .box {
+            width: 170px;
+            height: 70px;
+            background-color: #2212;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: slide 5s infinite alternate;
+        }
+    </style>
+</head>
+<body>
+   
+    <div class="container">
+        <div class="img-container">
+           
+            <img src="~/assets/Images/2023-PKKMB.jpg" class="img-fluid rounded mb-5" alt="">
+
+            <div class="box"></div>
+        </div>
+    </div>
+
+    <div class="mb-5">
+    </div>
+  
+    <figure class="img-fluid rounded mb-5">
+        <img src="/assets/Images/logo/Logo-PKKMB-500.jpg" class="figure-img img-fluid rounded" alt="...">
+       
+    </figure>
+
+</body>
+</html>
