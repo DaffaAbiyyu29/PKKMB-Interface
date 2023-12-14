@@ -87,12 +87,6 @@ namespace PKKMB_Interface.Controllers
 			return View();
 		}
 
-		[Route("mahasiswabaru/ruangan")]
-		public IActionResult Ruangan()
-		{
-			return View();
-		}
-
 		[Route("mahasiswabaru/evaluasi")]
 		public IActionResult Evaluasi()
 		{
