@@ -11,12 +11,6 @@
 				<a class="btn" style="position: absolute; top: 11px; right: 10px; color: white;" asp-controller="akun" asp-action="login"><strong>X</strong></a>
 			</h5>
 			<div class="card-body px-lg-5 pt-1">
-				@*<div class="mb-4">
-				<p class="text-center">
-				Untuk mendaftarkan akun, anda perlu menentukan
-				</p>
-				</div>*@
-
 				<div class="form-floating mb-4">
 					<select class="form-select" id="floatingSelect" name="tipeakun" aria-label="">
 						<option selected disabled>Pilih Tipe Akun</option>
@@ -29,88 +23,110 @@
 				<div class="row">
 					<div class="col-md-6">
 						<!-- First Column -->
-						<div class="form-floating mb-4 nim">
-							<input type="text" class="form-control" maxlength="10" id="nim" name="nim" placeholder="">
-							<label for="floatingInputGrid">NIM</label>
+						<div class="input-group has-validation mb-4 namalengkap">
+							<div class="form-floating is-invalid">
+								<input type="text" class="form-control is-invalid" maxlength="100" id="validateField" name="namalengkap" data-target="validateField" placeholder="">
+								<label for="validateField">Nama Lengkap</label>
+								<div class="invalid-feedback" data-target="validateLabel">* Masukkan Nama Lengkap.</div>
+							</div>
 						</div>
 
-						<div class="form-floating mb-4 nopendaftaran">
-							<input type="text" class="form-control" maxlength="10" id="nopendaftaran" name="nopendaftaran" placeholder="">
-							<label for="floatingInputGrid">No Pendaftaran</label>
+						<div class="input-group has-validation mb-4 jeniskelamin">
+							<div class="form-floating is-invalid">
+								<select class="form-select is-invalid" id="validateField" data-target="validateField" name="jeniskelamin" aria-label="">
+									<option selected disabled>Pilih Jenis Kelamin</option>
+									<option value="Laki-laki">Laki-laki</option>
+									<option value="Perempuan">Perempuan</option>
+								</select>
+								</select>
+								<label for="validateField">Jenis Kelamin</label>
+								<div class="invalid-feedback" data-target="validateLabel">* Pilih Jenis Kelamin.</div>
+							</div>
 						</div>
 
-						<div class="form-floating mb-4 namalengkap">
-							<input type="text" class="form-control" maxlength="100" id="namalengkap" name="namalengkap" placeholder="">
-							<label for="floatingInputGrid">Nama Lengkap</label>
+						<div class="input-group has-validation mb-4 programstudi">
+							<div class="form-floating is-invalid">
+								<select class="form-select is-invalid" id="validateField" data-target="validateField" name="programstudi" aria-label="">
+									<option selected disabled>Pilih Program Studi</option>
+									<option value="Teknik Produksi dan Proses Manufaktur">Teknik Produksi dan Proses Manufaktur</option>
+									<option value="Pembuatan Peralatan dan Perkakas Produksi">Pembuatan Peralatan dan Perkakas Produksi</option>
+									<option value="Manajemen Informatika">Manajemen Informatika</option>
+									<option value="Teknologi Konstruksi Bangunan Gedung">Teknologi Konstruksi Bangunan Gedung</option>
+									<option value="Mekatronika">Mekatronika</option>
+									<option value="Mesin Otomotif">Mesin Otomotif</option>
+									<option value="Teknologi Rekayasa Pemeliharaan Alat Berat">Teknologi Rekayasa Pemeliharaan Alat Berat</option>
+									<option value="Teknologi Rekayasa Logistik">Teknologi Rekayasa Logistik</option>
+								</select>
+								<label for="validateField">Program Studi</label>
+								<div class="invalid-feedback" data-target="validateLabel">* Pilih Program Studi.</div>
+							</div>
 						</div>
 
-						<div class="form-floating mb-4 jeniskelamin">
-							<select class="form-select" id="jeniskelamin" name="jeniskelamin" aria-label="">
-								<option selected>Pilih Jenis Kelamin</option>
-								<option value="Laki-laki">Laki-laki</option>
-								<option value="Perempuan">Perempuan</option>
-							</select>
-							<label for="floatingSelect">Jenis Kelamin</label>
-						</div>
-
-						<div class="form-floating mb-4 programstudi">
-							<select class="form-select" id="programstudi" name="programstudi" aria-label="">
-								<option selected disabled>Pilih Program Studi</option>
-								<option value="Teknik Produksi dan Proses Manufaktur">Teknik Produksi dan Proses Manufaktur</option>
-								<option value="Pembuatan Peralatan dan Perkakas Produksi">Pembuatan Peralatan dan Perkakas Produksi</option>
-								<option value="Manajemen Informatika">Manajemen Informatika</option>
-								<option value="Teknologi Konstruksi Bangunan Gedung">Teknologi Konstruksi Bangunan Gedung</option>
-								<option value="Mekatronika">Mekatronika</option>
-								<option value="Mesin Otomotif">Mesin Otomotif</option>
-								<option value="Teknologi Rekayasa Pemeliharaan Alat Berat">Teknologi Rekayasa Pemeliharaan Alat Berat</option>
-								<option value="Teknologi Rekayasa Logistik">Teknologi Rekayasa Logistik</option>
-							</select>
-							<label for="floatingSelect">Program Studi</label>
-						</div>
-						<div class="form-floating mb-4 alamat">
-							<textarea class="form-control" placeholder="" id="alamat" name="alamat" style="height: 100px"></textarea>
-							<label for="floatingTextarea2">Alamat</label>
+						<div class="input-group has-validation mb-4 alamat">
+							<div class="form-floating is-invalid">
+								<textarea class="form-control is-invalid" placeholder="" id="validateField" data-target="validateField" name="alamat" style="height: 100px"></textarea>
+								<label for="validateField">Alamat</label>
+								<div class="invalid-feedback" data-target="validateLabel">* Masukkan Alamat.</div>
+							</div>
 						</div>
 					</div>
 
 					<div class="col-md-6">
 						<!-- Second Column -->
-						<div class="form-floating mb-4 notelepon">
-							<input type="number" class="form-control" maxlength="13" id="notelepon" name="notelepon" placeholder="">
-							<label for="floatingInputGrid">No Telepon</label>
+						<div class="input-group has-validation mb-4 notelepon">
+							<div class="form-floating is-invalid">
+								<input type="text" class="form-control is-invalid" maxlength="13" id="validateField" data-target="validateField" name="notelepon" placeholder="" oninput="validateNumberInput(this)">
+								<label for="validateField">No Telepon</label>
+								<div class="invalid-feedback" data-target="validateLabel">* Masukkan No Telepon.</div>
+							</div>
 						</div>
 
-						<div class="form-floating mb-4 email">
-							<input type="email" class="form-control" maxlength="50" id="email" name="email" placeholder="">
-							<label for="floatingInputGrid">Email</label>
+						<div class="input-group has-validation mb-4 email">
+							<div class="form-floating is-invalid">
+								<input type="email" class="form-control is-invalid" maxlength="50" id="validateField" data-target="validateField" name="email" placeholder="">
+								<label for="validateField">Email</label>
+								<div class="invalid-feedback" data-target="validateLabel">* Masukkan Email.</div>
+							</div>
 						</div>
 
-						<div class="form-floating mb-4 kategori">
-							<select class="form-select" id="kategori" name="kategori" aria-label="">
-								<option selected disabled>Pilih Kategori Mahasiswa</option>
-								<option value="Beasiswa">Beasiswa</option>
-								<option value="Regular">Regular</option>
-							</select>
-							<label for="floatingSelect">Kategori Mahasiswa</label>
+						<div class="input-group has-validation mb-4 kategori">
+							<div class="form-floating is-invalid">
+								<select class="form-select is-invalid" id="validateField" data-target="validateField" name="kategori" aria-label="">
+									<option selected disabled>Pilih Kategori Mahasiswa</option>
+									<option value="Beasiswa">Beasiswa</option>
+									<option value="Regular">Regular</option>
+								</select>
+								<label for="validateField">Kategori Mahasiswa</label>
+								<div class="invalid-feedback" data-target="validateLabel">* Pilih Kategori Mahasiswa.</div>
+							</div>
 						</div>
 
-						<div class="form-floating mb-4 role">
-							<select class="form-select" id="role" name="role" aria-label="">
-								<option selected disabled>Pilih Role</option>
-								<option value="KSK">KSK</option>
-								<option value="Fasilitator">Fasilitator</option>
-							</select>
-							<label for="floatingSelect">Role Panitia Kesekretariatan</label>
+						<div class="input-group has-validation mb-4 role">
+							<div class="form-floating is-invalid">
+								<select class="form-select is-invalid" id="validateField" data-target="validateField" name="role" aria-label="">
+									<option selected disabled>Pilih Role</option>
+									<option value="KSK">KSK</option>
+									<option value="Fasilitator">Fasilitator</option>
+								</select>
+								<label for="validateField">Role Panitia Kesekretariatan</label>
+								<div class="invalid-feedback" data-target="validateLabel">* Pilih Role.</div>
+							</div>
 						</div>
 
-						<div class="form-floating mb-4 katasandi">
-							<input type="password" class="form-control" maxlength="30" id="katasandi" name="katasandi" placeholder="">
-							<label for="floatingInputGrid">Kata Sandi</label>
+						<div class="input-group has-validation mb-4 katasandi">
+							<div class="form-floating is-invalid">
+								<input type="password" class="form-control is-invalid" maxlength="30" id="validateField" data-target="validateField" name="katasandi" placeholder="">
+								<label for="validateField">Kata Sandi</label>
+								<div class="invalid-feedback" data-target="validateLabel">* Masukkan Kata Sandi.</div>
+							</div>
 						</div>
 
-						<div class="form-floating mb-4 katasandi2">
-							<input type="password" class="form-control" maxlength="30" id="katasandi2" name="katasandi2" placeholder="">
-							<label for="floatingInputGrid">Ketik Ulang Kata Sandi</label>
+						<div class="input-group has-validation mb-4 katasandi2">
+							<div class="form-floating is-invalid">
+								<input type="password" class="form-control is-invalid" maxlength="30" id="validateField" data-target="validateField" name="katasandi2" placeholder="">
+								<label for="validateField">Ketik Ulang Kata Sandi</label>
+								<div class="invalid-feedback" data-target="validateLabel">* Ketik Ulang Kata Sandi.</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -124,7 +140,6 @@
 		</div>
 	</div>
 </div>
-
 
 <script>
 	$('.nim').hide();
@@ -179,25 +194,48 @@
 </script>
 
 <script>
+	function validateNumberInput(inputElement) {
+		// Mengganti input hanya dengan karakter angka
+		inputElement.value = inputElement.value.replace(/\D/g, '');
+
+		// Menampilkan pesan kesalahan jika karakter selain angka dimasukkan
+		var validationMessage = inputElement.parentElement.querySelector('[data-target="validateLabel"]');
+	}
+
+	function validateEmailFormat(emailInput) {
+		// Pola regex untuk memeriksa format email
+		var emailRegex = /^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/;
+		return emailRegex.test(emailInput.value);
+	}
+</script>
+
+<script>
 	function daftarakun(event) {
 		event.preventDefault();
 
 		var selectedTipeAkun = $('[name="tipeakun"]').val();
 
-		var nim = document.getElementById("nim").value;
-		var nopendaftaran = document.getElementById("nopendaftaran").value;
-		var namalengkap = document.getElementById("namalengkap").value;
-		var jeniskelamin = document.getElementById("jeniskelamin").value;
-		var programstudi = document.getElementById("programstudi").value;
-		var alamat = document.getElementById("alamat").value;
-		var notelepon = document.getElementById("notelepon").value;
-		var email = document.getElementById("email").value;
-		var kategori = document.getElementById("kategori").value;
-		var role = document.getElementById("role").value;
-		var katasandi = document.getElementById("katasandi").value;
-		var katasandi2 = document.getElementById("katasandi2").value;
+		var namalengkap = document.getElementsByName("namalengkap")[0].value;
+		var jeniskelamin = document.getElementsByName("jeniskelamin")[0].value;
+		var programstudi = document.getElementsByName("programstudi")[0].value;
+		var alamat = document.getElementsByName("alamat")[0].value;
+		var notelepon = document.getElementsByName("notelepon")[0].value;
+		var email = document.getElementsByName("email")[0].value;
+		var kategori = document.getElementsByName("kategori")[0].value;
+		var role = document.getElementsByName("role")[0].value;
+		var katasandi = document.getElementsByName("katasandi")[0].value;
+		var katasandi2 = document.getElementsByName("katasandi2")[0].value;
 
-		// ... (tindakan sesuai dengan tipe akun dan validasi lainnya)
+		if (!isEmailValid) {
+			Swal.fire({
+				position: "top-end",
+				icon: "error",
+				title: "Format Email Tidak Sesuai",
+				showConfirmButton: false,
+				timer: 2000
+			});
+			return;
+		}
 
 		if (katasandi == katasandi2) {
 			// Adjust the URL, method, and data based on the selected account type
@@ -206,10 +244,22 @@
 			var data = {};
 
 			if (selectedTipeAkun === 'Mahasiswa Baru') {
+				if (namalengkap.trim() === '' || jeniskelamin.trim() === 'Pilih Jenis Kelamin' || programstudi.trim() === 'Pilih Program Studi' || alamat.trim() === '' || notelepon.trim() === '' || email.trim() === '' || kategori.trim() === 'Pilih Kategori Mahasiswa' || katasandi.trim() === '' || katasandi2.trim() === '') {
+					console.log(kategori)
+					Swal.fire({
+						position: "top-end",
+						icon: "error",
+						title: "Isi Semua Fields",
+						showConfirmButton: false,
+						timer: 2000
+					});
+					return;
+				}
+
 				url = "https://localhost:7087/daftarmahasiswa";
 				method = "POST";
 				data = {
-					mhs_nopendaftaran: nopendaftaran,
+					mhs_nopendaftaran: "",
 					mhs_namalengkap: namalengkap,
 					mhs_gender: jeniskelamin,
 					mhs_programstudi: programstudi,
@@ -228,10 +278,22 @@
 					mhs_tglkirimevaluasi: "",
 				};
 			} else if (selectedTipeAkun === 'Panitia Kesekretariatan') {
+				if (namalengkap.trim() === '' || jeniskelamin.trim() === 'Pilih Jenis Kelamin' || programstudi.trim() === 'Pilih Program Studi' || alamat.trim() === '' || notelepon.trim() === '' || email.trim() === '' || role.trim() === 'Pilih Role' || katasandi.trim() === '' || katasandi2.trim() === '') {
+					console.log(role)
+					Swal.fire({
+						position: "top-end",
+						icon: "error",
+						title: "Isi Semua Fields",
+						showConfirmButton: false,
+						timer: 2000
+					});
+					return;
+				}
+
 				url = "https://localhost:7087/daftarksk";
 				method = "POST";
 				data = {
-					ksk_nim: nim,
+					ksk_nim: "",
 					ksk_nama: namalengkap,
 					ksk_jeniskelamin: jeniskelamin,
 					ksk_programstudi: programstudi,
@@ -242,6 +304,15 @@
 					ksk_password: katasandi,
 					ksk_status: "Menunggu Verifikasi",
 				};
+			} else {
+				Swal.fire({
+					position: "top-end",
+					icon: "error",
+					title: "Pilih Tipe Akun",
+					showConfirmButton: false,
+					timer: 2000
+				});
+				return;
 			}
 
 			$.ajax({
@@ -277,3 +348,33 @@
 	}
 </script>
 
+<script>
+	// Mengambil semua elemen dengan nama ID "validateField"
+	var inputFields = document.querySelectorAll('[data-target="validateField"]');
+	var validationMessage = document.querySelectorAll('[data-target="validateLabel"]');
+
+	// Menambahkan event listener untuk setiap elemen input
+	inputFields.forEach(function (inputField) {
+		inputField.addEventListener('input', function () {
+			if (inputField.value.trim() !== '') {
+				inputField.classList.remove('is-invalid');
+
+			} else {
+				inputField.classList.add('is-invalid');
+
+			}
+		});
+
+		inputField.addEventListener('focus', function () {
+			if (inputField.value.trim() === '') {
+
+			}
+		});
+
+		inputField.addEventListener('blur', function () {
+			if (inputField.value.trim() !== '') {
+
+			}
+		});
+	});
+</script>
