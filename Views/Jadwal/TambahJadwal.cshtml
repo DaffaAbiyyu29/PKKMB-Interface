@@ -7,22 +7,10 @@
 		<div class="card">
 			@*@Context.Session.GetString("Peran")*@
 			<h5 class="card-header text-center white-text py-4 mb-4" style="background-color: #0059AB;">
-				<strong>Daftar Akun</strong>
+				<strong>Tambah Jadwal</strong>
 				<a class="btn" style="position: absolute; top: 11px; right: 10px; color: white;" asp-controller="akun" asp-action="login"><strong>X</strong></a>
 			</h5>
 			<div class="card-body px-lg-5 pt-1">
-				<div class="input-group has-validation mb-4 tipeakun">
-					<div class="form-floating is-invalid mb-4">
-						<select class="form-select is-invalid" id="validateField" data-target="validateField" name="tipeakun" aria-label="">
-							<option selected disabled>Pilih Tipe Akun</option>
-							<option value="Mahasiswa Baru">Mahasiswa Baru</option>
-							<option value="Panitia Kesekretariatan">Panitia Kesekretariatan</option>
-						</select>
-						<label for="validateField">Tipe Akun</label>
-						<div class="invalid-feedback" data-target="validateLabel">* Pilih Tipe Akun.</div>
-					</div>
-				</div>
-
 				<div class="row">
 					<div class="col-md-6">
 						<!-- First Column -->
@@ -144,58 +132,6 @@
 </div>
 
 <script>
-	$('.nim').hide();
-	$('.nopendaftaran').hide();
-	$('.namalengkap').hide();
-	$('.jeniskelamin').hide();
-	$('.programstudi').hide();
-	$('.alamat').hide();
-	$('.notelepon').hide();
-	$('.email').hide();
-	$('.kategori').hide();
-	$('.role').hide();
-	$('.katasandi').hide();
-	$('.katasandi2').hide();
-
-	// Add an event listener to the tipeakun dropdown
-	$(document).ready(function () {
-		$('[name="tipeakun"]').change(function () {
-			// Get the selected value
-			var selectedTipeAkun = $(this).val();
-
-			// Toggle visibility based on the selected account type
-			if (selectedTipeAkun === 'Mahasiswa Baru') {
-				$('.nim').hide();
-				$('.nopendaftaran').show();
-				$('.namalengkap').show();
-				$('.jeniskelamin').show();
-				$('.programstudi').show();
-				$('.alamat').show();
-				$('.notelepon').show();
-				$('.email').show();
-				$('.kategori').show();
-				$('.role').hide();
-				$('.katasandi').show();
-				$('.katasandi2').show();
-			} else if (selectedTipeAkun === 'Panitia Kesekretariatan') {
-				$('.nim').show();
-				$('.nopendaftaran').hide();
-				$('.namalengkap').show();
-				$('.jeniskelamin').show();
-				$('.programstudi').show();
-				$('.alamat').show();
-				$('.notelepon').show();
-				$('.email').show();
-				$('.kategori').hide();
-				$('.role').show();
-				$('.katasandi').show();
-				$('.katasandi2').show();
-			}
-		});
-	});
-</script>
-
-<script>
 	function validateNumberInput(inputElement) {
 		// Mengganti input hanya dengan karakter angka
 		inputElement.value = inputElement.value.replace(/\D/g, '');
@@ -258,7 +194,7 @@
 				mhs_email: email,
 				mhs_kategori: kategori,
 				mhs_password: katasandi,
-				mhs_status: "Aktif",
+				mhs_status: "Menunggu Verifikasi",
 				mhs_idkelompok: "",
 				mhs_idpkkmb: "",
 				mhs_statuskelulusan: "",
