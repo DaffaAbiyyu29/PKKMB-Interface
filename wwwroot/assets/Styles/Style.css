@@ -364,31 +364,75 @@ select {
     margin: 20mm;
 }
 
-@keyframes load {
-    0% {
-        opacity: 0.8;
-        transform: scale(0.8);
+
+#gambarInteraktif {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /* Add transition property for smooth animation */
+    transition: transform 0.5s;
+}
+
+    #gambarInteraktif:hover {
+        /* Move the element up by 10px when hovered */
+        transform: translateY(-10px);
     }
 
-    100% {
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 40px, 0);
+    }
+
+    to {
         opacity: 1;
-        transform: scale(1);
-    }
-}
-.img-fluid:hover {
-    opacity: 0.8;
-    transform: scale(1.2);
-}
-
-@keyframes slide {
-    0% {
-        transform: translateX(-200%);
-    }
-
-    100% {
-        transform: translateX(200%);
+        transform: none;
     }
 }
 
+#fadeInKeAtas {
+    animation: fadeInUp 1s ease-in-out;
+}
 
- 
+body {
+    background-image: url('/assets/Images/background/Element.png');
+}
+
+.imgWithShadow {
+    /* Add drop-shadow filter */
+    filter: drop-shadow(3px 3px 8px rgba(0,0,0,0.5));
+}
+
+
+
+.img-fluid {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin-right: 3em;
+    background-size: cover;
+    background-position: left;
+    animation: shrink 1s;
+}
+
+#fadeInKeAtas {
+    background-image: url('your-image-url-1');
+}
+
+#fadeInKeAtas2 {
+    background-image: url('your-image-url-2');
+    transform: rotate(5deg);
+    z-index: -1;
+}
+
+#fadeInKeAtas3 {
+    background-image: url('your-image-url-3');
+    transform: rotate(-5deg);
+    z-index: -2;
+}
+
+
+
+
