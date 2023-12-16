@@ -7,7 +7,7 @@
 		<div class="card">
 			@*@Context.Session.GetString("Peran")*@
 			<h5 class="card-header text-center white-text py-4 mb-4" style="background-color: #0059AB;">
-				<strong>Tambah Jadwal</strong>
+				<strong>Ubah Jadwal</strong>
 				<a class="btn" style="position: absolute; top: 11px; right: 10px; color: white;" asp-controller="akun" asp-action="login"><strong>X</strong></a>
 			</h5>
 			<div class="card-body px-lg-5 pt-1">
@@ -16,6 +16,7 @@
 						<!-- First Column -->
 						<div class="input-group has-validation mb-4 tanggal">
 							<div class="form-floating is-invalid">
+								<input type="text" class="form-control is-invalid" id="idjadwal" name="idjadwal" data-target="validateField" placeholder="" value="@ViewBag.jdl_idjadwal" hidden>
 								<input type="date" class="form-control is-invalid" id="tanggal" name="tanggal" data-target="validateField" placeholder="">
 								<label for="validateField">Tanggal Kegiatan</label>
 								<div class="invalid-feedback" data-target="validateLabel">* Masukkan Tanggal Kegiatan.</div>
@@ -59,7 +60,7 @@
 					</div>
 				</div>
 			</div>
-			<button class="btn btn-rounded btn-block my-3 mb-4 white-text font-weight-bold waves-effect z-depth-0" Style="background-color: #0059AB;" onclick="daftarakun(event)">Simpan</button>
+			<button class="btn btn-rounded btn-block my-3 mb-4 white-text font-weight-bold waves-effect z-depth-0" Style="background-color: #0059AB;" onclick="ubahjadwal(event)">Ubah</button>
 		</div>
 	</div>
 </div>
@@ -97,30 +98,75 @@
 </script>*@
 
 <script>
-	function daftarakun(event) {
+	loadDataJadwal()
+
+	function formatDate(inputDate) {
+		var date = new Date(inputDate);
+
+		// Dapatkan tahun, bulan, dan tanggal
+		var year = date.getFullYear();
+		var month = ('0' + (date.getMonth() + 1)).slice(-2); // Tambahkan 0 di depan jika bulan < 10
+		var day = ('0' + date.getDate()).slice(-2); // Tambahkan 0 di depan jika tanggal < 10
+
+		// Gabungkan dan kembalikan tanggal yang diformat
+		var formattedDate = year + '-' + month + '-' + day;
+		return formattedDate;
+	}
+
+	function formatWaktu(inputWaktu) {
+		// Pisahkan string menjadi dua bagian menggunakan karakter "-"
+		var waktuParts = inputWaktu.split('-');
+
+		// Hilangkan spasi di sekitar jam awal dan akhir
+		var waktuAwal = waktuParts[0].trim();
+		var waktuAkhir = waktuParts[1].trim();
+
+		return {
+			waktuAwal: waktuAwal,
+			waktuAkhir: waktuAkhir
+		};
+	}
+
+	function loadDataJadwal() {
+		var idjadwal = document.getElementsByName("idjadwal")[0]
+		var tanggal = document.getElementsByName("tanggal")[0]
+		var waktumulai = document.getElementsByName("waktumulai")[0];
+		var waktuakhir = document.getElementsByName("waktuakhir")[0];
+		var tempat = document.getElementsByName("tempat")[0];
+		var kegiatan = document.getElementsByName("kegiatan")[0];
+
+		var hostname = "https://localhost:7087/"
+		var url = hostname + "GetJadwal?jdl_idjadwal=" + idjadwal.value
+		var method = "GET"
+
+		$.ajax({
+			url: url,
+			method: method,
+			contentType: "application/json",
+			success: function (data) {
+				var item = data.data
+				console.log(formatWaktu(item.jdl_waktupelaksanaan).waktuAkhir)
+				idjadwal.value = item.jdl_idjadwal
+				tanggal.value = formatDate(item.jdl_tglpelaksanaan);
+				waktumulai.value = formatWaktu(item.jdl_waktupelaksanaan).waktuAwal
+				waktuakhir.value = formatWaktu(item.jdl_waktupelaksanaan).waktuAkhir
+				tempat.value = item.jdl_tempat
+				kegiatan.value = item.jdl_agenda
+			},
+		});
+	}
+
+	function ubahjadwal(event) {
 		event.preventDefault();
 
-		var tanggal = document.getElementsByName("tanggal")[0].value;
+		var tanggal = document.getElementsByName("tanggal")[0].value
 		var waktumulai = document.getElementsByName("waktumulai")[0].value;
 		var waktuakhir = document.getElementsByName("waktuakhir")[0].value;
 		var tempat = document.getElementsByName("tempat")[0].value;
 		var kegiatan = document.getElementsByName("kegiatan")[0].value;
 
-		// Adjust the URL, method, and data based on the selected account type
-		if (tanggal.trim() === '' || waktumulai.trim() === '' || waktuakhir.trim() === '' || tempat.trim() === '' || kegiatan.trim() === '') {
-			console.log(tanggal, waktuakhir)
-			Swal.fire({
-				position: "top-end",
-				icon: "error",
-				title: "Lengkapi Semua Fields",
-				showConfirmButton: false,
-				timer: 2000
-			});
-			return;
-		}
-
-		url = "https://localhost:7087/InsertJadwal";
-		method = "POST";
+		url = "https://localhost:7087/UpdateJadwal";
+		method = "PUT";
 		data = {
 			jdl_idjadwal: "",
 			jdl_tglpelaksanaan: tanggal,
@@ -140,7 +186,7 @@
 				Swal.fire({
 					position: "top-end",
 					icon: "success",
-					title: "Pembuatan Jadwal Berhasil",
+					title: "Ubah Jadwal Berhasil",
 					showConfirmButton: false,
 					timer: 2000
 				}).then(() => {
@@ -156,32 +202,25 @@
 </script>
 
 <script>
-	// Mengambil semua elemen dengan nama ID "validateField"
-	var inputFields = document.querySelectorAll('[data-target="validateField"]');
-	var validationMessage = document.querySelectorAll('[data-target="validateLabel"]');
+	document.addEventListener('DOMContentLoaded', function () {
+		var inputFields = document.querySelectorAll('[data-target="validateField"]');
 
-	// Menambahkan event listener untuk setiap elemen input
-	inputFields.forEach(function (inputField) {
-		inputField.addEventListener('input', function () {
+		inputFields.forEach(function (inputField) {
+			inputField.addEventListener('input', function () {
+				validateInput(inputField);
+			});
+
+			inputField.addEventListener('blur', function () {
+				validateInput(inputField);
+			});
+		});
+
+		function validateInput(inputField) {
 			if (inputField.value.trim() !== '') {
 				inputField.classList.remove('is-invalid');
-
 			} else {
 				inputField.classList.add('is-invalid');
-
 			}
-		});
-
-		inputField.addEventListener('focus', function () {
-			if (inputField.value.trim() === '') {
-
-			}
-		});
-
-		inputField.addEventListener('blur', function () {
-			if (inputField.value.trim() !== '') {
-
-			}
-		});
+		}
 	});
 </script>
