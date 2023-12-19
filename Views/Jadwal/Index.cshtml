@@ -44,7 +44,7 @@
 							<th scope="col">Aksi</th>
 						</tr>
 					</thead>
-					<tbody id="tbody"></tbody>
+					<tbody id="tbodysemua"></tbody>
 				</table>
 			</div>
 		</div>
@@ -63,9 +63,10 @@
 							<th scope="col">Waktu</th>
 							<th scope="col">Kegiatan</th>
 							<th scope="col">Tempat</th>
+							<th scope="col">Aksi</th>
 						</tr>
 					</thead>
-					<tbody id="tbody"></tbody>
+					<tbody id="tbodysenin"></tbody>
 				</table>
 			</div>
 		</div>
@@ -84,9 +85,10 @@
 							<th scope="col">Waktu</th>
 							<th scope="col">Kegiatan</th>
 							<th scope="col">Tempat</th>
+							<th scope="col">Aksi</th>
 						</tr>
 					</thead>
-					<tbody id="tbody"></tbody>
+					<tbody id="tbodyselasa"></tbody>
 				</table>
 			</div>
 		</div>
@@ -105,9 +107,10 @@
 							<th scope="col">Waktu</th>
 							<th scope="col">Kegiatan</th>
 							<th scope="col">Tempat</th>
+							<th scope="col">Aksi</th>
 						</tr>
 					</thead>
-					<tbody id="tbody"></tbody>
+					<tbody id="tbodyrabu"></tbody>
 				</table>
 			</div>
 		</div>
@@ -126,9 +129,10 @@
 							<th scope="col">Waktu</th>
 							<th scope="col">Kegiatan</th>
 							<th scope="col">Tempat</th>
+							<th scope="col">Aksi</th>
 						</tr>
 					</thead>
-					<tbody id="tbody"></tbody>
+					<tbody id="tbodykamis"></tbody>
 				</table>
 			</div>
 		</div>
@@ -147,9 +151,10 @@
 							<th scope="col">Waktu</th>
 							<th scope="col">Kegiatan</th>
 							<th scope="col">Tempat</th>
+							<th scope="col">Aksi</th>
 						</tr>
 					</thead>
-					<tbody id="tbody"></tbody>
+					<tbody id="tbodyjumat"></tbody>
 				</table>
 			</div>
 		</div>
@@ -163,6 +168,7 @@
 	$('.kamis').hide();
 	$('.jumat').hide();
 	$('.semua').show();
+	var tabel = '';
 
 	$(document).ready(function () {
 		$('[name="hari"]').change(function () {
@@ -186,61 +192,22 @@
 				$('.semua').show();
 			}
 
-			// Bersihkan isi tabel sebelum memuat data baru
-			$('#tbody').empty();
-
 			// Memuat data baru sesuai dengan hari yang dipilih
 			loadTable(selectedHari);
 		});
 	});
 
-	function loadTable(selectedHari) {
-		var hostname = "https://localhost:7087/";
-		var url = hostname + "GetJadwalByHari?hari=" + selectedHari;
-		var method = "GET";
-		var counter = 1;
 
-		$.ajax({
-			url: url,
-			method: method,
-			contentType: "application/json",
-			success: function (data) {
-				var list = data.data;
-				list.forEach(function (item) {
-					// Parse the date string and format it
-					var jadwalDate = new Date(item.jdl_tglpelaksanaan);
-					var formattedDate = getFormattedDate(jadwalDate);
-
-					var newRow = '<tr>' +
-						'<td>' + counter + '</td>' +
-						'<td>' + formattedDate + '</td>' +
-						'<td>' + item.jdl_waktupelaksanaan + '</td>' +
-						'<td>' + item.jdl_agenda + '</td>' +
-						'<td>' + item.jdl_tempat + '</td>' +
-						'<td>' +
-						'<a class="btn btn-primary" href="/Kelompok/Ubah/' + item.kmk_idkelompok + '"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>' +
-						//'<button class="btn btn-danger" value="' + item.kmk_idkelompok + '" onclick="hapus(this.value)">Delete</button>' +
-						'</td>' +
-						'</tr>';
-
-					$('#tbody').append(newRow);
-					counter++; // Increment the counter for the next row
-				});
-			},
-		});
-	}
-
-</script>
-
-<script>
 	new DataTable('#datatable');
 	loadTable();
 
-	function loadTable() {
+	function loadTable(selectedHari) {
 		var hostname = "https://localhost:7087/";
 		var url = hostname + "GetAllJadwal";
 		var method = "GET";
-		var counter = 1;
+
+		// Clear previous content before appending new rows
+		$('#tbodysenin, #tbodyselasa, #tbodyrabu, #tbodykamis, #tbodyjumat, #tbodysemua').empty();
 
 		$.ajax({
 			url: url,
@@ -248,10 +215,31 @@
 			contentType: "application/json",
 			success: function (data) {
 				var list = data.data;
+				var counter = 1;
+
 				list.forEach(function (item) {
 					// Parse the date string and format it
 					var jadwalDate = new Date(item.jdl_tglpelaksanaan);
 					var formattedDate = getFormattedDate(jadwalDate);
+					var hari = extractDayOfWeek(formattedDate);
+
+					var tabel = '#tbodysemua';
+
+					// Determine the table to append based on the selectedHari
+					if (selectedHari === 'Senin' && hari === 'Senin') {
+						tabel = '#tbodysenin';
+					} else if (selectedHari === 'Selasa' && hari === 'Selasa') {
+						tabel = '#tbodyselasa';
+					} else if (selectedHari === 'Rabu' && hari === 'Rabu') {
+						tabel = '#tbodyrabu';
+					} else if (selectedHari === 'Kamis' && hari === 'Kamis') {
+						tabel = '#tbodykamis';
+					} else if (selectedHari === 'Jumat' && hari === 'Jumat') {
+						tabel = '#tbodyjumat';
+					} else if (selectedHari === 'Semua') {
+						// Always append to "Semua" table
+						tabel = '#tbodysemua';
+					}
 
 					var newRow = '<tr>' +
 						'<td>' + counter + '</td>' +
@@ -264,7 +252,8 @@
 						'</td>' +
 						'</tr>';
 
-					$('#tbody').append(newRow);
+					console.log(hari, tabel)
+					$(tabel).append(newRow);
 					counter++; // Increment the counter for the next row
 				});
 			},
@@ -283,4 +272,14 @@
 
 		return formattedDate;
 	}
+
+	// Function to extract the day of the week
+	function extractDayOfWeek(dateString) {
+		var dayPart = dateString.split(',')[0];
+
+		var trimmedDay = dayPart.trim();
+
+		return trimmedDay;
+	}
+
 </script>

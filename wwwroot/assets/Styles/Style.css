@@ -422,10 +422,12 @@ body {
 }
 
 #fadeInKeAtas2 {
-    background-image: url('your-image-url-2');
-    transform: rotate(5deg);
-    z-index: -1;
+    background-image: url('/path/to/your-image.jpg'); /* Ganti dengan path yang sesuai */
+    transform: rotate(2deg);
+    background-position: -100px;
+    background-repeat: repeat;
 }
+
 
 #fadeInKeAtas3 {
     background-image: url('your-image-url-3');
