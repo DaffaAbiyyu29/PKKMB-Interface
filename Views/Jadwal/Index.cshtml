@@ -8,9 +8,9 @@
 			<a class="btn" style="background-color:#0059ab; color:white;" asp-controller="jadwal" asp-action="TambahJadwal">Tambah Data</a>
 		</div>
 	</div>
-	<div class="col-lg-4">
+	<div class="col-lg-4 float-end mb-3">
 	</div>
-	<div class="col-lg-4">
+	<div class="col-lg-4 float-end mb-3">
 		<div class="form-floating">
 			<select class="form-select" id="floatingSelect" name="hari" aria-label="">
 				<option selected disabled>Pilih Hari</option>
@@ -27,6 +27,28 @@
 </div>
 
 <div class="row justify-content-center mb-5">
+	<div class="col-lg mb-4 semua">
+		<div class="card">
+			<div class="card-header">
+				Jadwal PKKMB
+			</div>
+			<div class="card-body">
+				<table class="table" id="">
+					<thead>
+						<tr>
+							<th scope="col">No</th>
+							<th scope="col">Tanggal</th>
+							<th scope="col">Waktu</th>
+							<th scope="col">Kegiatan</th>
+							<th scope="col">Tempat</th>
+							<th scope="col">Aksi</th>
+						</tr>
+					</thead>
+					<tbody id="tbody"></tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 	<div class="col-lg mb-4 senin">
 		<div class="card">
 			<div class="card-header">
@@ -37,6 +59,7 @@
 					<thead>
 						<tr>
 							<th scope="col">No</th>
+							<th scope="col">Tanggal</th>
 							<th scope="col">Waktu</th>
 							<th scope="col">Kegiatan</th>
 							<th scope="col">Tempat</th>
@@ -57,6 +80,7 @@
 					<thead>
 						<tr>
 							<th scope="col">No</th>
+							<th scope="col">Tanggal</th>
 							<th scope="col">Waktu</th>
 							<th scope="col">Kegiatan</th>
 							<th scope="col">Tempat</th>
@@ -77,6 +101,7 @@
 					<thead>
 						<tr>
 							<th scope="col">No</th>
+							<th scope="col">Tanggal</th>
 							<th scope="col">Waktu</th>
 							<th scope="col">Kegiatan</th>
 							<th scope="col">Tempat</th>
@@ -97,6 +122,7 @@
 					<thead>
 						<tr>
 							<th scope="col">No</th>
+							<th scope="col">Tanggal</th>
 							<th scope="col">Waktu</th>
 							<th scope="col">Kegiatan</th>
 							<th scope="col">Tempat</th>
@@ -117,26 +143,7 @@
 					<thead>
 						<tr>
 							<th scope="col">No</th>
-							<th scope="col">Waktu</th>
-							<th scope="col">Kegiatan</th>
-							<th scope="col">Tempat</th>
-						</tr>
-					</thead>
-					<tbody id="tbody"></tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-	<div class="col-lg mb-4 semua">
-		<div class="card">
-			<div class="card-header">
-				Jadwal PKKMB
-			</div>
-			<div class="card-body">
-				<table class="table" id="">
-					<thead>
-						<tr>
-							<th scope="col">No</th>
+							<th scope="col">Tanggal</th>
 							<th scope="col">Waktu</th>
 							<th scope="col">Kegiatan</th>
 							<th scope="col">Tempat</th>
@@ -157,56 +164,123 @@
 	$('.jumat').hide();
 	$('.semua').show();
 
-	// Add an event listener to the tipeakun dropdown
 	$(document).ready(function () {
 		$('[name="hari"]').change(function () {
-			// Get the selected value
 			var selectedHari = $(this).val();
 
-			// Toggle visibility based on the selected account type
+			// Sembunyikan semua tabel terlebih dahulu
+			$('.semua, .senin, .selasa, .rabu, .kamis, .jumat').hide();
+
+			// Tampilkan tabel yang sesuai dengan pilihan hari
 			if (selectedHari === 'Senin') {
 				$('.senin').show();
-				$('.selasa').hide();
-				$('.rabu').hide();
-				$('.kamis').hide();
-				$('.jumat').hide();
-				$('.semua').hide();
 			} else if (selectedHari === 'Selasa') {
-				$('.senin').hide();
 				$('.selasa').show();
-				$('.rabu').hide();
-				$('.kamis').hide();
-				$('.jumat').hide();
-				$('.semua').hide();
 			} else if (selectedHari === 'Rabu') {
-				$('.senin').hide();
-				$('.selasa').hide();
 				$('.rabu').show();
-				$('.kamis').hide();
-				$('.jumat').hide();
-				$('.semua').hide();
 			} else if (selectedHari === 'Kamis') {
-				$('.senin').hide();
-				$('.selasa').hide();
-				$('.rabu').hide();
 				$('.kamis').show();
-				$('.jumat').hide();
-				$('.semua').hide();
 			} else if (selectedHari === 'Jumat') {
-				$('.senin').hide();
-				$('.selasa').hide();
-				$('.rabu').hide();
-				$('.kamis').hide();
 				$('.jumat').show();
-				$('.semua').hide();
 			} else if (selectedHari === 'Semua') {
-				$('.senin').hide();
-				$('.selasa').hide();
-				$('.rabu').hide();
-				$('.kamis').hide();
-				$('.jumat').hide();
 				$('.semua').show();
 			}
+
+			// Bersihkan isi tabel sebelum memuat data baru
+			$('#tbody').empty();
+
+			// Memuat data baru sesuai dengan hari yang dipilih
+			loadTable(selectedHari);
 		});
 	});
+
+	function loadTable(selectedHari) {
+		var hostname = "https://localhost:7087/";
+		var url = hostname + "GetJadwalByHari?hari=" + selectedHari;
+		var method = "GET";
+		var counter = 1;
+
+		$.ajax({
+			url: url,
+			method: method,
+			contentType: "application/json",
+			success: function (data) {
+				var list = data.data;
+				list.forEach(function (item) {
+					// Parse the date string and format it
+					var jadwalDate = new Date(item.jdl_tglpelaksanaan);
+					var formattedDate = getFormattedDate(jadwalDate);
+
+					var newRow = '<tr>' +
+						'<td>' + counter + '</td>' +
+						'<td>' + formattedDate + '</td>' +
+						'<td>' + item.jdl_waktupelaksanaan + '</td>' +
+						'<td>' + item.jdl_agenda + '</td>' +
+						'<td>' + item.jdl_tempat + '</td>' +
+						'<td>' +
+						'<a class="btn btn-primary" href="/Kelompok/Ubah/' + item.kmk_idkelompok + '"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>' +
+						//'<button class="btn btn-danger" value="' + item.kmk_idkelompok + '" onclick="hapus(this.value)">Delete</button>' +
+						'</td>' +
+						'</tr>';
+
+					$('#tbody').append(newRow);
+					counter++; // Increment the counter for the next row
+				});
+			},
+		});
+	}
+
+</script>
+
+<script>
+	new DataTable('#datatable');
+	loadTable();
+
+	function loadTable() {
+		var hostname = "https://localhost:7087/";
+		var url = hostname + "GetAllJadwal";
+		var method = "GET";
+		var counter = 1;
+
+		$.ajax({
+			url: url,
+			method: method,
+			contentType: "application/json",
+			success: function (data) {
+				var list = data.data;
+				list.forEach(function (item) {
+					// Parse the date string and format it
+					var jadwalDate = new Date(item.jdl_tglpelaksanaan);
+					var formattedDate = getFormattedDate(jadwalDate);
+
+					var newRow = '<tr>' +
+						'<td>' + counter + '</td>' +
+						'<td>' + formattedDate + '</td>' +
+						'<td>' + item.jdl_waktupelaksanaan + '</td>' +
+						'<td>' + item.jdl_agenda + '</td>' +
+						'<td>' + item.jdl_tempat + '</td>' +
+						'<td>' +
+						'<a class="btn btn-primary" href="/Jadwal/Ubah/' + item.jdl_idjadwal + '"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>' +
+						'</td>' +
+						'</tr>';
+
+					$('#tbody').append(newRow);
+					counter++; // Increment the counter for the next row
+				});
+			},
+		});
+	}
+
+	// Function to format date as "hari, tanggal bulan tahun"
+	function getFormattedDate(date) {
+		var days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+		var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+
+		var formattedDate = days[date.getDay()] + ', ' +
+			date.getDate() + ' ' +
+			months[date.getMonth()] + ' ' +
+			date.getFullYear();
+
+		return formattedDate;
+	}
 </script>
