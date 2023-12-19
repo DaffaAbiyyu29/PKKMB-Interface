@@ -64,38 +64,6 @@
 	</div>
 </div>
 
-@*<script>
-	function getRuanganData() {
-		$.ajax({
-			url: "https://localhost:7087/GetAllRuangan",
-			method: "GET",
-			success: function (data) {
-				if (data.status === 200) {
-					var ruanganDropdown = $('#ruanganSelect');
-
-					ruanganDropdown.empty();
-
-					ruanganDropdown.append('<option selected disabled>Pilih Ruangan</option>');
-
-					data.data.forEach(function (ruangan) {
-						ruanganDropdown.append('<option value="' + ruangan.rng_idruangan + '">' + ruangan.rng_namaruangan + '</option>');
-					});
-				} else {
-					console.error("Failed to get ruangan data from the API");
-				}
-			},
-			error: function (xhr, status) {
-				console.error("AJAX request error:", status);
-				console.log("Server response:", xhr.responseJSON);
-			},
-		});
-	}
-
-	$(document).ready(function () {
-		getRuanganData();
-	});
-</script>*@
-
 <script>
 	function daftarakun(event) {
 		event.preventDefault();
