@@ -11,13 +11,16 @@
 				<a class="btn" style="position: absolute; top: 11px; right: 10px; color: white;" asp-controller="akun" asp-action="login"><strong>X</strong></a>
 			</h5>
 			<div class="card-body px-lg-5 pt-1">
-				<div class="form-floating mb-4">
-					<select class="form-select" id="floatingSelect" name="tipeakun" aria-label="">
-						<option selected disabled>Pilih Tipe Akun</option>
-						<option value="Mahasiswa Baru">Mahasiswa Baru</option>
-						<option value="Panitia Kesekretariatan">Panitia Kesekretariatan</option>
-					</select>
-					<label for="floatingSelect">Tipe Akun</label>
+				<div class="input-group has-validation mb-4 tipeakun">
+					<div class="form-floating is-invalid mb-4">
+						<select class="form-select is-invalid" id="validateField" data-target="validateField" name="tipeakun" aria-label="">
+							<option selected disabled>Pilih Tipe Akun</option>
+							<option value="Mahasiswa Baru">Mahasiswa Baru</option>
+							<option value="Panitia Kesekretariatan">Panitia Kesekretariatan</option>
+						</select>
+						<label for="validateField">Tipe Akun</label>
+						<div class="invalid-feedback" data-target="validateLabel">* Pilih Tipe Akun.</div>
+					</div>
 				</div>
 
 				<div class="row">
@@ -37,7 +40,6 @@
 									<option selected disabled>Pilih Jenis Kelamin</option>
 									<option value="Laki-laki">Laki-laki</option>
 									<option value="Perempuan">Perempuan</option>
-								</select>
 								</select>
 								<label for="validateField">Jenis Kelamin</label>
 								<div class="invalid-feedback" data-target="validateLabel">* Pilih Jenis Kelamin.</div>
@@ -226,6 +228,93 @@
 		var katasandi = document.getElementsByName("katasandi")[0].value;
 		var katasandi2 = document.getElementsByName("katasandi2")[0].value;
 
+		// Adjust the URL, method, and data based on the selected account type
+		var url = "";
+		var method = "";
+		var data = {};
+
+		if (selectedTipeAkun === 'Mahasiswa Baru') {
+			if (namalengkap.trim() === '' || jeniskelamin.trim() === 'Pilih Jenis Kelamin' || programstudi.trim() === 'Pilih Program Studi' || alamat.trim() === '' || notelepon.trim() === '' || email.trim() === '' || kategori.trim() === 'Pilih Kategori Mahasiswa' || katasandi.trim() === '' || katasandi2.trim() === '') {
+				Swal.fire({
+					position: "top-end",
+					icon: "error",
+					title: "Lengkapi Semua Fields",
+					showConfirmButton: false,
+					timer: 2000
+				});
+				return;
+			}
+
+			url = "https://localhost:7087/daftarmahasiswa";
+			method = "POST";
+			data = {
+				mhs_nopendaftaran: "",
+				mhs_namalengkap: namalengkap,
+				mhs_gender: jeniskelamin,
+				mhs_programstudi: programstudi,
+				mhs_alamat: alamat,
+				mhs_notelepon: notelepon,
+				mhs_email: email,
+				mhs_kategori: kategori,
+				mhs_password: katasandi,
+				mhs_status: "Aktif",
+				mhs_idkelompok: "",
+				mhs_idpkkmb: "",
+				mhs_statuskelulusan: "",
+				mhs_saran: "",
+				mhs_kritik: "",
+				mhs_insight: "",
+				mhs_tglkirimevaluasi: "",
+			};
+		} else if (selectedTipeAkun === 'Panitia Kesekretariatan') {
+			if (namalengkap.trim() === '' || jeniskelamin.trim() === 'Pilih Jenis Kelamin' || programstudi.trim() === 'Pilih Program Studi' || alamat.trim() === '' || notelepon.trim() === '' || email.trim() === '' || role.trim() === 'Pilih Role' || katasandi.trim() === '' || katasandi2.trim() === '') {
+				Swal.fire({
+					position: "top-end",
+					icon: "error",
+					title: "Isi Semua Fields",
+					showConfirmButton: false,
+					timer: 2000
+				});
+				return;
+			}
+
+			url = "https://localhost:7087/daftarksk";
+			method = "POST";
+			data = {
+				ksk_nim: "",
+				ksk_nama: namalengkap,
+				ksk_jeniskelamin: jeniskelamin,
+				ksk_programstudi: programstudi,
+				ksk_alamat: alamat,
+				ksk_notelepon: notelepon,
+				ksk_email: email,
+				ksk_role: role,
+				ksk_password: katasandi,
+				ksk_status: "Menunggu Verifikasi",
+			};
+		} else {
+			Swal.fire({
+				position: "top-end",
+				icon: "error",
+				title: "Pilih Tipe Akun",
+				showConfirmButton: false,
+				timer: 2000
+			});
+			return;
+		}
+
+		if (notelepon.length < 12 || notelepon.length > 13) {
+			Swal.fire({
+				position: "top-end",
+				icon: "error",
+				title: "Nomor Telepon Harus 12 atau 13 Digit",
+				showConfirmButton: false,
+				timer: 2000
+			});
+			return;
+		}
+
+		var isEmailValid = validateEmailFormat(document.getElementsByName("email")[0]);
 		if (!isEmailValid) {
 			Swal.fire({
 				position: "top-end",
@@ -237,106 +326,7 @@
 			return;
 		}
 
-		if (katasandi == katasandi2) {
-			// Adjust the URL, method, and data based on the selected account type
-			var url = "";
-			var method = "";
-			var data = {};
-
-			if (selectedTipeAkun === 'Mahasiswa Baru') {
-				if (namalengkap.trim() === '' || jeniskelamin.trim() === 'Pilih Jenis Kelamin' || programstudi.trim() === 'Pilih Program Studi' || alamat.trim() === '' || notelepon.trim() === '' || email.trim() === '' || kategori.trim() === 'Pilih Kategori Mahasiswa' || katasandi.trim() === '' || katasandi2.trim() === '') {
-					console.log(kategori)
-					Swal.fire({
-						position: "top-end",
-						icon: "error",
-						title: "Isi Semua Fields",
-						showConfirmButton: false,
-						timer: 2000
-					});
-					return;
-				}
-
-				url = "https://localhost:7087/daftarmahasiswa";
-				method = "POST";
-				data = {
-					mhs_nopendaftaran: "",
-					mhs_namalengkap: namalengkap,
-					mhs_gender: jeniskelamin,
-					mhs_programstudi: programstudi,
-					mhs_alamat: alamat,
-					mhs_notelepon: notelepon,
-					mhs_email: email,
-					mhs_kategori: kategori,
-					mhs_password: katasandi,
-					mhs_status: "Menunggu Verifikasi",
-					mhs_idkelompok: "",
-					mhs_idpkkmb: "",
-					mhs_statuskelulusan: "",
-					mhs_saran: "",
-					mhs_kritik: "",
-					mhs_insight: "",
-					mhs_tglkirimevaluasi: "",
-				};
-			} else if (selectedTipeAkun === 'Panitia Kesekretariatan') {
-				if (namalengkap.trim() === '' || jeniskelamin.trim() === 'Pilih Jenis Kelamin' || programstudi.trim() === 'Pilih Program Studi' || alamat.trim() === '' || notelepon.trim() === '' || email.trim() === '' || role.trim() === 'Pilih Role' || katasandi.trim() === '' || katasandi2.trim() === '') {
-					console.log(role)
-					Swal.fire({
-						position: "top-end",
-						icon: "error",
-						title: "Isi Semua Fields",
-						showConfirmButton: false,
-						timer: 2000
-					});
-					return;
-				}
-
-				url = "https://localhost:7087/daftarksk";
-				method = "POST";
-				data = {
-					ksk_nim: "",
-					ksk_nama: namalengkap,
-					ksk_jeniskelamin: jeniskelamin,
-					ksk_programstudi: programstudi,
-					ksk_alamat: alamat,
-					ksk_notelepon: notelepon,
-					ksk_email: email,
-					ksk_role: role,
-					ksk_password: katasandi,
-					ksk_status: "Menunggu Verifikasi",
-				};
-			} else {
-				Swal.fire({
-					position: "top-end",
-					icon: "error",
-					title: "Pilih Tipe Akun",
-					showConfirmButton: false,
-					timer: 2000
-				});
-				return;
-			}
-
-			$.ajax({
-				url: url,
-				method: method,
-				data: JSON.stringify(data),
-				contentType: "application/json",
-				success: function (data) {
-					Swal.fire({
-						position: "top-end",
-						icon: "success",
-						title: "Akun Berhasil Terbuat",
-						showConfirmButton: false,
-						timer: 2000
-					}).then(() => {
-						window.location.href = '..';
-					});
-				},
-				error: function (xhr, status) {
-					console.error("AJAX request error:", status);
-					console.log("Server response:", xhr.responseJSON);
-				},
-			});
-		} else {
+		if (katasandi != katasandi2) {
 			Swal.fire({
 				position: "top-end",
 				icon: "error",
@@ -345,6 +335,28 @@
 				timer: 2000
 			})
 		}
+
+		$.ajax({
+			url: url,
+			method: method,
+			data: JSON.stringify(data),
+			contentType: "application/json",
+			success: function (data) {
+				Swal.fire({
+					position: "top-end",
+					icon: "success",
+					title: "Pendaftaran Berhasil",
+					showConfirmButton: false,
+					timer: 2000
+				}).then(() => {
+					window.location.href = '..';
+				});
+			},
+			error: function (xhr, status) {
+				console.error("AJAX request error:", status);
+				console.log("Server response:", xhr.responseJSON);
+			},
+		});
 	}
 </script>
 

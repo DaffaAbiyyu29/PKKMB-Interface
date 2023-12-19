@@ -4,25 +4,26 @@
 @{
 }
 
-<div class="card">
-	<div class="card-body">
-		<div class="my-3" style="margin-top: 40px;">
-			<a class="btn btn-primary" asp-controller="panitiakesekretariatan" asp-action="DaftarAkunKsk">Tambah Data</a>
+<div class="row justify-content-center mb-5">
+	<div class="col-lg">
+		<div class="card">
+			<div class="card-body">
+				<table class="table" id="">
+					<thead>
+						<tr>
+							<th scope="col">No</th>
+							<th scope="col">NIM</th>
+							<th scope="col">Nama KSK</th>
+							<th scope="col">Gender</th>
+							<th scope="col">Program Studi</th>
+							<th scope="col">Role</th>
+							<th scope="col">Aksi</th>
+						</tr>
+					</thead>
+					<tbody id="tbody"></tbody>
+				</table>
+			</div>
 		</div>
-		<table class="table" id="">
-			<thead>
-				<tr>
-					<th scope="col">No</th>
-					<th scope="col">NIM</th>
-					<th scope="col">Nama KSK</th>
-					<th scope="col">Gender</th>
-					<th scope="col">Program Studi</th>
-					<th scope="col">Role</th>
-					<th scope="col">Aksi</th>
-				</tr>
-			</thead>
-			<tbody id="tbody"></tbody>
-		</table>
 	</div>
 </div>
 
@@ -32,7 +33,7 @@
 
 	function loadTable() {
 		var hostname = "https://localhost:7087/"
-		var url = hostname + "getallksk"
+		var url = hostname + "TampilKskAktif"
 		var method = "GET"
 		var counter = 1; // Initialize a counter variable
 
@@ -59,22 +60,6 @@
 					$('#tbody').append(newRow);
 					counter++; // Increment the counter for the next row
 				});
-			},
-		});
-	}
-
-	function hapus(ksk_nim) {
-		var hostname = "https://localhost:7087/"
-		var url = hostname + "hapusksk?ksk_nim=" + ksk_nim
-		var method = "DELETE"
-
-		$.ajax({
-			url: url,
-			method: method,
-			contentType: "application/json",
-			success: function (data) {
-				alert("Data Berhasil Dihapus")
-				location.reload();
 			},
 		});
 	}
