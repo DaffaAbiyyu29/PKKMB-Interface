@@ -8,5 +8,17 @@ namespace PKKMB_Interface.Controllers
 		{
 			return View();
 		}
+
+		public IActionResult Tambah()
+		{
+			return View();
+		}
+
+		[Route("jadwal/ubah/{jdl_idjadwal}")]
+		public IActionResult ubah(string jdl_idjadwal)
+		{
+			ViewBag.jdl_idjadwal = jdl_idjadwal;
+			return View();
+		}
 	}
 }
