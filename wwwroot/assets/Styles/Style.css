@@ -400,6 +400,7 @@ body {
     background-image: url('/assets/Images/background/Element.png');
 }
 
+
 .imgWithShadow {
     /* Add drop-shadow filter */
     filter: drop-shadow(3px 3px 8px rgba(0,0,0,0.5));
